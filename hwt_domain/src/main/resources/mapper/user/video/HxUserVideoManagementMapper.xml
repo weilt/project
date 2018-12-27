@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.video.HxUserVideoManagementMapper">
+  <resultMap id="HxUserVideoManagementVo" type="com.hwt.domain.entity.user.video.HxUserVideoManagementVo">
+    <id column="video_id" jdbcType="BIGINT" property="video_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="attribute_id" jdbcType="BIGINT" property="attribute_id" />
+    <result column="dec" jdbcType="VARCHAR" property="dec" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="is_hide" jdbcType="INTEGER" property="is_hide" />
+    <result column="is_open" jdbcType="INTEGER" property="is_open" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="good_num" jdbcType="BIGINT" property="good_num" />
+    <result column="look_num" jdbcType="BIGINT" property="look_num" />
+    <result column="comment_num" jdbcType="BIGINT" property="comment_num" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area_code" jdbcType="VARCHAR" property="area_code" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="handlers" jdbcType="VARCHAR" property="handlers" />
+    <result column="transmit_number" jdbcType="INTEGER" property="transmit_number" />
+    <result column="operation_time" jdbcType="BIGINT" property="operation_time" />
+  </resultMap>
+
+  <sql id="hx_user_video">
+    a.video_id, a.user_id, a.attribute_id, a.dec, a.image, a.content, a.is_hide, a.is_open, a.status, a.reason,
+     a.create_time, a.good_num, a.look_num, a.comment_num, a.longitude, a.latitude, a.city, a.area_code, a.location
+  </sql>
+ 
+  <select id="selectQueryByMap" parameterType="java.util.Map" resultType="java.util.Map">
+    select
+    b.account,
+    b.nickname,
+    <include refid="hx_user_video"/>
+    from
+    hx_user_video a,
+    hx_user_info b
+    where
+    a.user_id = b.user_id
+    and video_type = 1
+    <if test="status !=null and status == 0">
+
+    </if>
+    <if test="status !=null and status != 0">
+      and a.`status` = #{status}
+    </if>
+    <if test="video_id !=null and video_id != ''">
+      and a.`video_id` = #{video_id}
+    </if>
+    <if test="account !=null and account != ''">
+      and b.account = #{account,jdbcType=VARCHAR}
+    </if>
+    <if test="date !=null and date != '' and date1 !=null and date1 != ''">
+      and a.create_time between #{date,jdbcType=BIGINT} and #{date1,jdbcType=BIGINT}
+    </if>
+    order by ${orderBy}
+    limit #{startNum},#{pageSize}
+  </select>
+
+<select id="selectQueryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+    SELECT
+        COUNT(0)
+    FROM
+        hx_user_video a,
+         hx_user_info b
+    WHERE
+        a.user_id = b.user_id
+  and video_type = 1
+  <if test="status !=null and status == 0">
+
+  </if>
+  <if test="status !=null and status != 0">
+    and a.`status` = ${status}
+  </if>
+  <if test="video_id !=null and video_id != ''">
+    and a.`video_id` = #{video_id}
+  </if>
+  <if test="account !=null and account != ''">
+    and b.account = #{account,jdbcType=VARCHAR}
+  </if>
+  <if test="date !=null and date != '' and date1 !=null and date1 != ''">
+    and a.create_time between #{date,jdbcType=BIGINT} and #{date1,jdbcType=BIGINT}
+  </if>
+
+</select>
+
+   
+</mapper>

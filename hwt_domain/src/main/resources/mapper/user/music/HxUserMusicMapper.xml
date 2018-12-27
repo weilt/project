@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.music.HxUserMusicMapper">
+ <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.video.vo.HxMusicVo">
+    <id column="music_id" jdbcType="BIGINT" property="music_id" />
+    <result column="music_url" jdbcType="VARCHAR" property="music_url" />
+    <result column="music_title" jdbcType="VARCHAR" property="music_title" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="use_account" jdbcType="BIGINT" property="use_account" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="is_open" jdbcType="INTEGER" property="is_open" />
+    <result column="music_tag" jdbcType="INTEGER" property="music_tag" />
+    <result column="music_cover" jdbcType="VARCHAR" property="music_cover" />
+    <result column="music_time" jdbcType="BIGINT" property="music_time" />
+    <result column="music_writer" jdbcType="VARCHAR" property="music_writer" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List">
+    music_id, music_url,
+    music_title, create_time,
+     use_account, user_id,
+     `is_open`, music_tag,
+    music_cover,music_time, music_writer
+  </sql>
+    <select id="batchSelectDetails" resultType="com.hwt.domain.entity.user.video.vo.HxMusicVo">
+        select * from hx_music where music_id in
+        <foreach collection="ids" item="arr" index="no" open="("
+                 separator="," close=")">
+            #{arr}
+        </foreach>
+    </select>
+    <!--删除音频-->
+    <delete id="updateByOneDelete" parameterType="java.lang.Long">
+        delete from hx_music where music_id = #{music_id}
+    </delete>
+    <!--隐藏音频-->
+    <update id="updateByOneIsopen" parameterType="java.lang.Integer">
+        UPDATE hx_music SET
+        <if test="is_open != null">
+        is_open=#{is_open}
+        </if>
+        WHERE
+        music_id = #{music_id}
+    </update>
+    <!--单个修改-->
+    <update id="updateByOneMusic" parameterType="map">
+        UPDATE hx_music
+        <set>
+        <if test="music_tag != null">
+            music_tag =#{music_tag},
+        </if>
+        <if test="music_title != null">
+            music_title = #{music_title},
+        </if>
+        <if test="music_writer != null">
+            music_writer=#{music_writer},
+        </if>
+        <if test="music_cover != null">
+            music_cover =#{music_cover},
+        </if>
+        </set>
+        WHERE
+        music_id = #{music_id}
+    </update>
+    <!--多个修改-->
+    <update id="updateByMusic">
+        UPDATE hx_music
+        <set>
+        <if test="music_tag != null">
+        music_tag =#{music_tag},
+        </if>
+        <if test="music_title != null">
+        music_title = #{music_title},
+        </if>
+        <if test="music_writer != null">
+        music_writer=#{music_writer},
+        </if>
+        <if test="music_cover != null">
+        music_cover =#{music_cover},
+        </if>
+        </set>
+        WHERE
+        music_id = #{music_id}
+    </update>
+    <!--查询音频是否存在2-->
+    <select id="selectByMusic" resultType="com.hwt.domain.entity.user.video.vo.HxMusicVo" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from hx_music where music_id = #{music_id}
+    </select>
+    <!--查询音频是否存在-->
+    <select id="selectByMusicId" resultType="java.lang.Long">
+        select count(0) from hx_music where music_id in
+        <foreach collection="list" item="arr" index="no" open="("
+          separator="," close=")">
+        #{arr}
+    </foreach>
+    </select>
+    <delete id="deleteByMusic">
+        <!-- delete from emp where empno in(7789,7790) -->
+        <!-- forEach : 用来循环 collection : 用来指定循环的数据的类型 可以填的值有：array,list,map item
+            : 循环中为每个循环的数据指定一个别名 index : 循环中循环的下标 open : 开始 close : 结束 separator : 数组中元素之间的分隔符 -->
+        delete from hx_music where music_id in
+        <foreach collection="list" item="arr" index="no" open="("
+                 separator="," close=")">
+            #{arr}
+        </foreach>
+    </delete>
+    <!--查询所有-->
+    <select id="selectQuery" parameterType="map" resultType="com.hwt.domain.entity.user.video.vo.HxMusicVo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        hx_music
+        <where>
+            <if test="music_tag != 0 and music_tag != null and music_tag != 9">
+                music_tag=#{music_tag}
+            </if>
+            <if test="music_tag == 9 and music_tag != null"><!--无分类-->
+                and (music_tag is null or trim(music_tag)='')
+            </if>
+            <if test="music_writer != null and music_writer ==0"><!--0-无歌手名称-->
+                and (music_writer is null or trim(music_writer)='')
+            </if>
+            <if test="music_writer != null and music_writer ==1"><!--1-有歌手名称-->
+                and (trim(music_writer) != '')
+            </if>
+            <if test="music_title != null and music_title ==0"><!--0-无歌曲名称-->
+                and (music_title is null or trim(music_title)='')
+            </if>
+            <if test="music_title != null and music_title ==1"><!--1-有歌曲名称-->
+                and (trim(music_title) != '')
+            </if>
+            <if test="music_cover != null and music_cover ==0"><!--0-无封面图-->
+                and (music_cover is null or trim(music_cover)='')
+            </if>
+            <if test="music_cover != null and music_cover ==1"><!--1-有封面图-->
+                and (trim(music_cover) != '')
+            </if>
+            <if test="is_open != null"><!--0-未隐藏--><!--1-已隐藏-->
+                and (is_open= #{is_open})
+            </if>
+        </where>
+        order by ${orderBy}
+        limit #{startNum},#{pageSize}
+    </select>
+    <!--查询所有个数-->
+    <select id="selectCount" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        count(0)
+        FROM
+        hx_music
+        <where>
+            <if test="music_tag != 0 and music_tag != null and music_tag != 9">
+                music_tag=#{music_tag}
+            </if>
+            <if test="music_tag == 9 and music_tag != null"><!--无分类-->
+                and (music_tag is null or trim(music_tag)='')
+            </if>
+            <if test="music_writer != null and music_writer ==0"><!--0-无歌手名称-->
+                and (music_writer is null or trim(music_writer)='')
+            </if>
+            <if test="music_writer != null and music_writer ==1"><!--1-有歌手名称-->
+                and (trim(music_writer) != '')
+            </if>
+            <if test="music_title != null and music_title ==0"><!--0-无歌曲名称-->
+                and (music_title is null or trim(music_title)='')
+            </if>
+            <if test="music_title != null and music_title ==1"><!--1-有歌曲名称-->
+                and (trim(music_title) != '')
+            </if>
+            <if test="music_cover != null and music_cover ==0"><!--0-无封面图-->
+                and (music_cover is null or trim(music_cover)='')
+            </if>
+            <if test="music_cover != null and music_cover ==1"><!--1-有封面图-->
+                and (trim(music_cover) != '')
+            </if>
+            <if test="is_open != null"><!--0-未隐藏--><!--1-已隐藏-->
+                and (is_open= #{is_open})
+            </if>
+        </where>
+    </select>
+
+    <!--歌手名搜索-->
+    <select id="selectSingerQuery" parameterType="map" resultType="com.hwt.domain.entity.user.video.vo.HxMusicVo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        hx_music
+        <where>
+            <if test="music_tag != 0 and music_tag != null">
+                music_tag=#{music_tag}
+            </if>
+            <if test="music_writer != null and music_writer ==0"><!--0-无歌手名称-->
+                and music_writer is null or trim(music_writer)=''
+            </if>
+            <if test="music_writer != null and music_writer ==1"><!--1-有歌手名称-->
+                and trim(music_writer) != ''
+            </if>
+            <if test="music_title != null and music_title ==0"><!--0-无歌曲名称-->
+                and music_title is null or trim(music_title)=''
+            </if>
+            <if test="music_title != null and music_title ==1"><!--1-有歌曲名称-->
+                and trim(music_title) != ''
+            </if>
+            <if test="music_cover != null and music_cover ==0"><!--0-无封面图-->
+                and music_cover is null or trim(music_cover)=''
+            </if>
+            <if test="music_cover != null and music_cover ==1"><!--1-有封面图-->
+                and trim(music_cover) != ''
+            </if>
+            <if test="is_open != null"><!--0-未隐藏--><!--1-已隐藏-->
+                and is_open= #{is_open}
+            </if>
+        </where>
+         and music_writer like concat('%',#{music_writer2,jdbcType=VARCHAR},'%')
+          order by ${orderBy}
+        limit #{startNum},#{pageSize}
+    </select>
+    <!--歌手名个数-->
+    <select id="selectSingerCount" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        count(0)
+        FROM
+        hx_music
+        <where>
+            <if test="music_tag != 0 and music_tag != null">
+                music_tag=#{music_tag}
+            </if>
+            <if test="music_writer != null and music_writer ==0"><!--0-无歌手名称-->
+                and music_writer is null or trim(music_writer)=''
+            </if>
+            <if test="music_writer != null and music_writer ==1"><!--1-有歌手名称-->
+                and trim(music_writer) != ''
+            </if>
+            <if test="music_title != null and music_title ==0"><!--0-无歌曲名称-->
+                and music_title is null or trim(music_title)=''
+            </if>
+            <if test="music_title != null and music_title ==1"><!--1-有歌曲名称-->
+                and trim(music_title) != ''
+            </if>
+            <if test="music_cover != null and music_cover ==0"><!--0-无封面图-->
+                and music_cover is null or trim(music_cover)=''
+            </if>
+            <if test="music_cover != null and music_cover ==1"><!--1-有封面图-->
+                and trim(music_cover) != ''
+            </if>
+            <if test="is_open != null"><!--0-未隐藏--><!--1-已隐藏-->
+                and is_open= #{is_open}
+            </if>
+        </where>
+         and music_writer like concat('%',#{music_writer2,jdbcType=VARCHAR},'%')
+    </select>
+
+    <!--歌曲名称搜索-->
+    <select id="selectBySongQuery" parameterType="map" resultType="com.hwt.domain.entity.user.video.vo.HxMusicVo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        hx_music
+        <where>
+            <if test="music_tag != 0 and music_tag != null">
+                music_tag=#{music_tag}
+            </if>
+            <if test="music_writer != null and music_writer ==0"><!--0-无歌手名称-->
+                and music_writer is null or trim(music_writer)=''
+            </if>
+            <if test="music_writer != null and music_writer ==1"><!--1-有歌手名称-->
+                and trim(music_writer) != ''
+            </if>
+            <if test="music_title != null and music_title ==0"><!--0-无歌曲名称-->
+                and music_title is null or trim(music_title)=''
+            </if>
+            <if test="music_title != null and music_title ==1"><!--1-有歌曲名称-->
+                and trim(music_title) != ''
+            </if>
+            <if test="music_cover != null and music_cover ==0"><!--0-无封面图-->
+                and music_cover is null or trim(music_cover)=''
+            </if>
+            <if test="music_cover != null and music_cover ==1"><!--1-有封面图-->
+                and trim(music_cover) != ''
+            </if>
+            <if test="is_open != null"><!--0-未隐藏--><!--1-已隐藏-->
+                and is_open= #{is_open}
+            </if>
+        </where>
+        and music_title like CONCAT('%',#{music_title2},'%')
+          order by ${orderBy}
+        limit #{startNum},#{pageSize}
+    </select>
+    <!--歌曲名称个数-->
+    <select id="selectBySongCount" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        count(0)
+        FROM
+        hx_music
+        <where>
+            <if test="music_tag != 0 and music_tag != null">
+                music_tag=#{music_tag}
+            </if>
+            <if test="music_writer != null and music_writer ==0"><!--0-无歌手名称-->
+                and music_writer is null or trim(music_writer)=''
+            </if>
+            <if test="music_writer != null and music_writer ==1"><!--1-有歌手名称-->
+                and trim(music_writer) != ''
+            </if>
+            <if test="music_title != null and music_title ==0"><!--0-无歌曲名称-->
+                and music_title is null or trim(music_title)=''
+            </if>
+            <if test="music_title != null and music_title ==1"><!--1-有歌曲名称-->
+                and trim(music_title) != ''
+            </if>
+            <if test="music_cover != null and music_cover ==0"><!--0-无封面图-->
+                and music_cover is null or trim(music_cover)=''
+            </if>
+            <if test="music_cover != null and music_cover ==1"><!--1-有封面图-->
+                and trim(music_cover) != ''
+            </if>
+            <if test="is_open != null"><!--0-未隐藏--><!--1-已隐藏-->
+                and is_open= #{is_open}
+            </if>
+        </where>
+        and music_title like CONCAT('%',#{music_title2},'%')
+    </select>
+    <!--用户id搜索-->
+    <select id="selectByUserQuery" parameterType="map" resultType="com.hwt.domain.entity.user.video.vo.HxMusicVo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        hx_music
+        <where>
+            <if test="music_tag != 0 and music_tag != null">
+                music_tag=#{music_tag}
+            </if>
+            <if test="music_writer != null and music_writer ==0"><!--0-无歌手名称-->
+                and music_writer is null or trim(music_writer)=''
+            </if>
+            <if test="music_writer != null and music_writer ==1"><!--1-有歌手名称-->
+                and trim(music_writer) != ''
+            </if>
+            <if test="music_title != null and music_title ==0"><!--0-无歌曲名称-->
+                and music_title is null or trim(music_title)=''
+            </if>
+            <if test="music_title != null and music_title ==1"><!--1-有歌曲名称-->
+                and trim(music_title) != ''
+            </if>
+            <if test="music_cover != null and music_cover ==0"><!--0-无封面图-->
+                and music_cover is null or trim(music_cover)=''
+            </if>
+            <if test="music_cover != null and music_cover ==1"><!--1-有封面图-->
+                and trim(music_cover) != ''
+            </if>
+            <if test="is_open != null"><!--0-未隐藏--><!--1-已隐藏-->
+                and is_open= #{is_open}
+            </if>
+        </where>
+         and user_id like CONCAT('%',#{user_id},'%')
+          order by ${orderBy}
+          limit #{startNum},#{pageSize}
+    </select>
+    <!--用户id个数-->
+    <select id="selectByUserCount" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        count(0)
+        FROM
+        hx_music
+        <where>
+            <if test="music_tag != 0 and music_tag != null">
+                music_tag=#{music_tag}
+            </if>
+            <if test="music_writer != null and music_writer ==0"><!--0-无歌手名称-->
+                and music_writer is null or trim(music_writer)=''
+            </if>
+            <if test="music_writer != null and music_writer ==1"><!--1-有歌手名称-->
+                and trim(music_writer) != ''
+            </if>
+            <if test="music_title != null and music_title ==0"><!--0-无歌曲名称-->
+                and music_title is null or trim(music_title)=''
+            </if>
+            <if test="music_title != null and music_title ==1"><!--1-有歌曲名称-->
+                and trim(music_title) != ''
+            </if>
+            <if test="music_cover != null and music_cover ==0"><!--0-无封面图-->
+                and music_cover is null or trim(music_cover)=''
+            </if>
+            <if test="music_cover != null and music_cover ==1"><!--1-有封面图-->
+                and trim(music_cover) != ''
+            </if>
+            <if test="is_open != null"><!--0-未隐藏--><!--1-已隐藏-->
+                and is_open= #{is_open}
+            </if>
+        </where>
+         and user_id like CONCAT('%',#{user_id},'%')
+    </select>
+
+    <!--分页查看 音乐库中的数据-->
+<select id="selectMusicALL" parameterType="java.lang.Integer" resultType="com.hwt.domain.entity.user.video.vo.HxMusicVo">
+SELECT
+use_account,
+	music_title,
+	music_url,
+	music_cover,
+	music_id,
+	music_time,
+	music_writer,
+	music_tag
+	is_open
+FROM
+	hx_music
+WHERE
+	use_account &gt; 9
+	AND is_open =0
+	order by use_account desc
+	limit #{page}, #{pageSize}
+</select>
+  <!--插入音频-->
+      <insert id="insertByMusics" parameterType="com.hwt.domain.entity.user.video.vo.HxMusicVo" useGeneratedKeys="true" keyProperty="music_id">
+    insert into hx_music
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <!--<if test="music_id != null and music_id != 0">-->
+      <!--music_id,-->
+      <!--</if>-->
+      <if test="music_url != null">
+        music_url,
+      </if>
+      <if test="music_title != null">
+        music_title,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="use_account != null">
+        use_account,
+      </if>
+      <if test="music_cover != null">
+          music_cover,
+      </if>
+      <if test="music_time != null">
+          music_time,
+      </if>
+        <if test="music_writer != null">
+            music_writer,
+      </if>
+      <if test="user_id != null and user_id != 0">
+        user_id
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <!--<if test="music_id != null and music_id != 0">-->
+      <!--#{music_id,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <if test="music_url != null">
+        #{music_url,jdbcType=VARCHAR},
+      </if>
+      <if test="music_title != null">
+        #{music_title,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="use_account != null">
+        #{use_account,jdbcType=BIGINT},
+      </if>
+      <if test="music_cover != null">
+        #{music_cover,jdbcType=VARCHAR},
+      </if>
+      <if test="music_time != null">
+        #{music_time,jdbcType=BIGINT},
+      </if>
+        <if test="music_writer != null">
+        #{music_writer,jdbcType=VARCHAR},
+      </if>
+      <if test="user_id != null and user_id != 0">
+        #{user_id,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </insert>
+
+
+</mapper>

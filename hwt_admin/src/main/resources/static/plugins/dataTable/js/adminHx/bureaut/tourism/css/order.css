@@ -1,0 +1,167 @@
+*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.bigBox{
+				width: 1027px;
+				height: auto;
+				border: 1px solid rgb(121,121,121);
+				margin: 50px auto;
+				padding: 0 0 20px 0;
+			}
+			.head{
+				width: 100%;
+				height: 45px;
+				border-bottom: 1px solid rgb(121,121,121);
+				line-height: 45px;
+				position: relative;
+				text-align: center;
+				background-color: rgb(244,244,244);
+			}
+			.head-left{
+				position: absolute;
+				right: 12px;
+				top: 0;
+			}
+			.content{
+				width: 100%;
+				height: auto;
+				padding: 36px 26px;
+			}
+			.div1{
+				margin-bottom: 15px;
+			}
+			.div1 h1{
+				width: 85px;
+				height: 26px;
+				font-size: 14px;
+				text-align: center;
+				line-height: 26px;
+				background-color: rgb(244,244,244);
+			}
+			.order_line{
+				margin: 20px 0 0 10px;
+				font-size: 14px;
+			}
+			.order_line span{
+				margin-left: 50%;
+			}
+			.btn{
+				width: 100%;
+				height: 27px;
+				position: relative;
+			}
+			.btn>div{
+				width: 300px;
+				height: 27px;
+				margin: 0 auto;
+			}
+			.btn>div:after{
+				clear: both;
+			}
+			.btn .btns{
+				float: left;
+				font-size: 14px;
+				width: 95px;
+				height: 27px;
+				text-align: center;
+				line-height: 27px;
+				cursor: pointer;
+				border-radius: 10px;
+				border: 1px solid #000;
+				margin-left: 32px;
+			}
+
+			.z-newBox{
+				width: 100%;
+				height: auto;
+				overflow: auto;
+				zoom: 1;
+				padding-top: 45px;
+				padding-left: 26px;
+			}
+			.z-newBox p{
+				text-align: center;
+			}
+			.z-newBox > div{
+				float: left;
+				width: auto;
+				height: auto;
+			}
+			.z-newBox div img{
+				display: block;
+				width: 10px;
+				height: 10px;
+				margin: 0 auto 5px auto;
+			}
+			.z-newBox > i{
+				display: block;
+				width: 50px;
+				height: 1px;
+				background-color: #000000;
+				float: left;
+				margin-top: 25px;
+			}
+			.z-newBox time{
+				display: block;
+				font-size: 12px;
+				text-align: center;
+				width: 100%;
+			}
+			.z-bottomBox{
+				width: 100%;
+				height: auto;
+				padding-top: 100px;
+				padding-left: 26px;
+			}
+			.z-newsss h1{
+				display: inline-block;
+			}
+			.z-newBox span{
+				display: block;
+				font-size: 12px;
+				margin-bottom: 5px;
+			}
+
+			#one {
+				width: 300px;
+				height: 30px;
+				display: table-cell;
+				border: 1px solid #ccc;
+				vertical-align: middle;
+			}
+
+			#tow {
+				width: 500px;
+				height: 30px;
+				display: table-cell;
+				border: 1px solid #ccc;
+				vertical-align: middle;
+			}
+
+			#z-zwz {
+				margin: 0 auto;
+				margin: 100px auto;
+			}
+			#z-break {
+				margin: 0 auto;
+				margin: -90px auto;
+			}
+			#z-break2 {
+				margin: 0 auto;
+				margin: -30px auto;
+			}
+			#guider{
+				width: 200px;
+				border: 1px solid #ccc;
+				height: 50px;
+				text-align: center;
+			}
+			#guider2{
+				width: 200px;
+				border: 1px solid #ccc;
+				height: 50px;
+				margin: -80px auto;
+				text-align: center;
+			}

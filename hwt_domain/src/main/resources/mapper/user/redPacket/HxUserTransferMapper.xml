@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.redPacket.HxUserTransferMapper">
+    <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.redPacket.HxUserTransfer">
+    <id column="transfer_id" jdbcType="BIGINT" property="transfer_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="accept_user_id" jdbcType="BIGINT" property="accept_user_id" />
+    <result column="send_amount" jdbcType="DECIMAL" property="send_amount" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="transfer_type" jdbcType="INTEGER" property="transfer_type" />
+    <result column="trans_num" jdbcType="VARCHAR" property="trans_num" />
+    <result column="creat_time" jdbcType="BIGINT" property="creat_time" />
+    <result column="linqu_time" jdbcType="BIGINT" property="linqu_time" />
+    <result column="is_accept" jdbcType="INTEGER" property="is_accept" />
+    <result column="refuse_time" jdbcType="BIGINT" property="refuse_time" />
+    <result column="refuse_trans_num" jdbcType="VARCHAR" property="refuse_trans_num" />
+    <result column="is_pay" jdbcType="INTEGER" property="is_pay" />
+    <result column="pay_time" jdbcType="BIGINT" property="pay_time" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    transfer_id, user_id, accept_user_id, send_amount, title, content, transfer_type, 
+    trans_num, creat_time, linqu_time, is_accept, refuse_time, refuse_trans_num, is_pay, 
+    pay_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_user_transfer
+    where transfer_id = #{transfer_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_user_transfer
+    where transfer_id = #{transfer_id,jdbcType=BIGINT}
+  </delete>
+  
+   <insert id="insert" parameterType="com.hwt.domain.entity.user.redPacket.HxUserTransfer">
+    insert into hx_user_transfer (transfer_id, user_id, accept_user_id, 
+      send_amount, title, content, 
+      transfer_type, trans_num, creat_time, 
+      linqu_time, is_accept, refuse_time, 
+      refuse_trans_num, is_pay, pay_time
+      )
+    values (#{transfer_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{accept_user_id,jdbcType=BIGINT}, 
+      #{send_amount,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{transfer_type,jdbcType=INTEGER}, #{trans_num,jdbcType=VARCHAR}, #{creat_time,jdbcType=BIGINT}, 
+      #{linqu_time,jdbcType=BIGINT}, #{is_accept,jdbcType=INTEGER}, #{refuse_time,jdbcType=BIGINT}, 
+      #{refuse_trans_num,jdbcType=VARCHAR}, #{is_pay,jdbcType=INTEGER}, #{pay_time,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.redPacket.HxUserTransfer">
+    insert into hx_user_transfer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transfer_id != null">
+        transfer_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="accept_user_id != null">
+        accept_user_id,
+      </if>
+      <if test="send_amount != null">
+        send_amount,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="transfer_type != null">
+        transfer_type,
+      </if>
+      <if test="trans_num != null">
+        trans_num,
+      </if>
+      <if test="creat_time != null">
+        creat_time,
+      </if>
+      <if test="linqu_time != null">
+        linqu_time,
+      </if>
+      <if test="is_accept != null">
+        is_accept,
+      </if>
+      <if test="refuse_time != null">
+        refuse_time,
+      </if>
+      <if test="refuse_trans_num != null">
+        refuse_trans_num,
+      </if>
+      <if test="is_pay != null">
+        is_pay,
+      </if>
+      <if test="pay_time != null">
+        pay_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transfer_id != null">
+        #{transfer_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="accept_user_id != null">
+        #{accept_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="send_amount != null">
+        #{send_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="transfer_type != null">
+        #{transfer_type,jdbcType=INTEGER},
+      </if>
+      <if test="trans_num != null">
+        #{trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="creat_time != null">
+        #{creat_time,jdbcType=BIGINT},
+      </if>
+      <if test="linqu_time != null">
+        #{linqu_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_accept != null">
+        #{is_accept,jdbcType=INTEGER},
+      </if>
+      <if test="refuse_time != null">
+        #{refuse_time,jdbcType=BIGINT},
+      </if>
+      <if test="refuse_trans_num != null">
+        #{refuse_trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="is_pay != null">
+        #{is_pay,jdbcType=INTEGER},
+      </if>
+      <if test="pay_time != null">
+        #{pay_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.redPacket.HxUserTransfer">
+    update hx_user_transfer
+    <set>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="accept_user_id != null">
+        accept_user_id = #{accept_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="send_amount != null">
+        send_amount = #{send_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="transfer_type != null">
+        transfer_type = #{transfer_type,jdbcType=INTEGER},
+      </if>
+      <if test="trans_num != null">
+        trans_num = #{trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="creat_time != null">
+        creat_time = #{creat_time,jdbcType=BIGINT},
+      </if>
+      <if test="linqu_time != null">
+        linqu_time = #{linqu_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_accept != null">
+        is_accept = #{is_accept,jdbcType=INTEGER},
+      </if>
+      <if test="refuse_time != null">
+        refuse_time = #{refuse_time,jdbcType=BIGINT},
+      </if>
+      <if test="refuse_trans_num != null">
+        refuse_trans_num = #{refuse_trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="is_pay != null">
+        is_pay = #{is_pay,jdbcType=INTEGER},
+      </if>
+      <if test="pay_time != null">
+        pay_time = #{pay_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where transfer_id = #{transfer_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.redPacket.HxUserTransfer">
+    update hx_user_transfer
+    set user_id = #{user_id,jdbcType=BIGINT},
+      accept_user_id = #{accept_user_id,jdbcType=BIGINT},
+      send_amount = #{send_amount,jdbcType=DECIMAL},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      transfer_type = #{transfer_type,jdbcType=INTEGER},
+      trans_num = #{trans_num,jdbcType=VARCHAR},
+      creat_time = #{creat_time,jdbcType=BIGINT},
+      linqu_time = #{linqu_time,jdbcType=BIGINT},
+      is_accept = #{is_accept,jdbcType=INTEGER},
+      refuse_time = #{refuse_time,jdbcType=BIGINT},
+      refuse_trans_num = #{refuse_trans_num,jdbcType=VARCHAR},
+      is_pay = #{is_pay,jdbcType=INTEGER},
+      pay_time = #{pay_time,jdbcType=BIGINT}
+    where transfer_id = #{transfer_id,jdbcType=BIGINT}
+  </update>
+  
+  <!--  insertBackId  返回主键添加-->
+   <insert id="insertBackId" parameterType="com.hwt.domain.entity.user.redPacket.HxUserTransfer" useGeneratedKeys="true" keyProperty="transfer_id">
+   insert into hx_user_transfer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transfer_id != null">
+        transfer_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="accept_user_id != null">
+        accept_user_id,
+      </if>
+      <if test="send_amount != null">
+        send_amount,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="transfer_type != null">
+        transfer_type,
+      </if>
+      <if test="trans_num != null">
+        trans_num,
+      </if>
+      <if test="creat_time != null">
+        creat_time,
+      </if>
+      <if test="linqu_time != null">
+        linqu_time,
+      </if>
+      <if test="is_accept != null">
+        is_accept,
+      </if>
+      <if test="refuse_time != null">
+        refuse_time,
+      </if>
+      <if test="refuse_trans_num != null">
+        refuse_trans_num,
+      </if>
+      <if test="is_pay != null">
+        is_pay,
+      </if>
+      <if test="pay_time != null">
+        pay_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transfer_id != null">
+        #{transfer_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="accept_user_id != null">
+        #{accept_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="send_amount != null">
+        #{send_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="transfer_type != null">
+        #{transfer_type,jdbcType=INTEGER},
+      </if>
+      <if test="trans_num != null">
+        #{trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="creat_time != null">
+        #{creat_time,jdbcType=BIGINT},
+      </if>
+      <if test="linqu_time != null">
+        #{linqu_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_accept != null">
+        #{is_accept,jdbcType=INTEGER},
+      </if>
+      <if test="refuse_time != null">
+        #{refuse_time,jdbcType=BIGINT},
+      </if>
+      <if test="refuse_trans_num != null">
+        #{refuse_trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="is_pay != null">
+        #{is_pay,jdbcType=INTEGER},
+      </if>
+      <if test="pay_time != null">
+        #{pay_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>

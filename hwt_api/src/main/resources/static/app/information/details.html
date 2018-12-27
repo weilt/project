@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name ="viewport" content ="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=yes">
+		<title></title>
+			<link rel="stylesheet" type="text/css" href="/plugin/line/css/swiper.css"/>
+		<script src="/plugin/line/js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			img{
+				border: none;
+			}
+			.d-header{
+				width: 100%;
+				height: auto;
+				padding: 15px 12px 10px 12px;
+				border-bottom: 1px solid #e3e3e3;
+			}
+			.d-header h1{
+				color: #000000;
+				text-align: left;
+				font-size: 0.45rem;
+				font-weight: 500;
+				margin-bottom: 5px;
+			}
+			.d-header em{
+				color: rgb(102,102,102);
+				font-style: normal;
+				font-size: 0.3rem;
+			}
+			
+			.d-main{
+				width: 100%;
+				height: auto;
+				padding: 13px 12px;
+				color: rgb(57,57,57);
+				font-size: 0.35rem;
+			}
+			.d-main img{
+				width: 100% !important;
+				height: auto;
+				margin: 10px 0;
+			}
+			p{
+				text-indent: 0 !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="d-header">
+			<h1></h1>
+			<em></em>
+		</div>
+		
+		<div class="d-main"></div>
+		
+		
+		<script src="/public/js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/plugin/line/js/swiper.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(window).ready(function(){
+				$.ajax({
+					type:"post",
+					url:"/information/queryInfo",
+					async:true,
+					data: {information_id: GetQueryString('id')},
+					success: function(d){
+						console.log(d)
+						if(d.code == 200){
+							$('.d-main').append(d.data.content)		//	主体内容
+							$('.d-header h1').append(d.data.tilte)	//	标题
+							$('.d-header em').append(d.data.source )	//	来源
+							inspectImg()
+						}
+					}
+				});
+			})
+			
+			function inspectImg(){
+				setTimeout(function(){
+					for(var i=0; i<$('img').length; i++){
+						var imgWidth = $('img').eq(i).css('width').replace('px' , '')
+						if(parseInt(imgWidth) == 0){
+							$('img').eq(i).remove()
+						}
+						
+					}
+				} , 3000)
+			}
+			
+			function GetQueryString(name) {		//	获取地址参数
+			    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			    var r = window.location.search.substr(1).match(reg);
+			    if(r!=null)return  unescape(r[2]); return null;
+			}
+		</script>
+	</body>
+</html>

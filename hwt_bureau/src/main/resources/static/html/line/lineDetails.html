@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		  <script src="/model/lib/jquery/jquery.js"></script>
+		<script src="/html/line/js/swiper.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="/html/line/css/swiper.css"/>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.switchPhone{
+				width: 140px;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				position: fixed;
+				top: 0;
+				right: 500px;
+				background-color: #FFFFFF;
+				border: 1px solid #000000;
+				cursor: pointer;
+				border-radius: 5px;
+				z-index: 99999;
+			}
+			.l-main{
+				width: 790px;
+				height: auto;
+				margin: 20px auto;
+			}
+			.l-title{
+				font-size: 24px;
+			}
+			.l-content{
+				margin-bottom: 12px;
+			}
+			.l-content img{
+				width: 100% !important;
+				height: auto !important;
+			}
+			.l-phone{
+				display: block;
+				width: 500px;
+				height: auto;
+				margin: 0 auto;
+			}
+			.swiper-container{
+				width: 100%;
+				height: 250px;
+			}
+			.swiper-container img{
+				width: 100%;
+				height: 100%;
+			}
+			.l-headBox{
+				width: 100%;
+				height: auto;
+				padding: 12px;
+			}
+			.l-head_title {
+			    font-size: 16px;
+			    font-weight: bold;
+			}
+			.l-money {
+			    color: #ff5000;
+			    font-size: 16px;
+			}
+			.serverGuarantee {
+			    display: flex;
+			    width: 100%;
+			    height: auto;
+			    padding: 12px;
+			}
+			.serverGuaranteeR {
+			    margin-left: .12px;
+			    font-size: 13px;
+			    color: rgb(255,142,2);
+			    padding-top: 12px;
+			    margin-left: 15px;
+			}
+			.serverGuaranteeR span {
+			    display: inline-block;
+			    margin: 0 5px 5px 0;
+			}
+			.serverGuaranteeL i {
+			    display: block;
+			    width: 15px;
+			    height: 15px;
+			    background-image: url(../../html/line/img/baozhang.png);
+			    margin: 0 auto;
+			    background-size: 100% 100%;
+			}
+			.serverGuaranteeL span {
+			    display: block;
+			    min-width: 52px;
+			    font-size: 13px;
+			    color: #999;
+			    margin-top: 1px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="l-phone">
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			    </div>
+			    <!-- 如果需要分页器 -->
+			    <div class="swiper-pagination"></div>
+			</div>
+			<div class="l-headBox">
+				<p class="l-head_title"></p>
+				<p class="l-money"></p>
+			</div>
+			<div style="width: 100%;height: 5px;background-color: rgb(242,243,244);"></div>
+			<div class="serverGuarantee">
+				<div class="serverGuaranteeL">
+					<i></i>
+					<span>服务保障</span>
+				</div>
+				<div class="serverGuaranteeR">
+					<p><span>无购物<span></span></span></p>
+				</div>
+			</div>
+			<div style="width: 100%;height: 5px;background-color: rgb(242,243,244);"></div>
+		</div>
+		<div class="l-main">
+			<div class="l-black1">
+				<div class="l-title">图文详情</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black2">
+				<div class="l-title">交通信息</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black3">
+				<div class="l-title">酒店住宿</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black4">
+				<div class="l-title">行程介绍</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black5">
+				<div class="l-title">餐饮</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black6">
+				<div class="l-title">费用包含</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black7">
+				<div class="l-title">费用不含</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black8">
+				<div class="l-title">自费项目</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black9">
+				<div class="l-title">预定须知</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black10">
+				<div class="l-title">保险说明</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black11">
+				<div class="l-title">取消政策</div>
+				<div class="l-content"></div>
+			</div>
+			<div class="l-black12">
+				<div class="l-title">安全提醒</div>
+				<div class="l-content"></div>
+			</div>
+		</div>
+		
+		<div class="switchPhone">切换手机预览</div>
+		
+		<script type="text/javascript">
+		function GetQueryString(name) {		//	获取地址参数
+		    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		    var r = window.location.search.substr(1).match(reg);
+		    if(r!=null)return  unescape(r[2]); return null;
+		}
+		
+			(function(){
+				var isLook = 'pc'
+				$.ajax({
+					type:"post",
+					url:"../../bureau/line/update_query",
+					async:true,
+					data: {line_id:GetQueryString('id')},
+					success: function(d){
+						console.log(d)
+						if(d.code == 200){
+							setBanner(d.data.hwTravelLine.line_images)//	设置banner
+							$('.l-head_title').text(d.data.hwTravelLine.line_name)//	线路名称
+							//setPrice(JSON.parse(d.data.hwTravelLine.line_price))//	价格
+							setPrice(d.data.hwTravelLine.min_price,d.data.hwTravelLine.max_price)//	价格
+							$('.l-black1 .l-content').append(d.data.hwTravelLine.line_info)//	图文详情
+							$('.l-black2 .l-content').append(d.data.hwTravelLine.line_traffic)//	交通信息
+							$('.l-black3 .l-content').append(d.data.hwTravelLine.line_hotel)//	酒店住宿
+							$('.l-black4 .l-content').append(d.data.hwTravelLine.line_trip)//	行程介绍
+							$('.l-black5 .l-content').append(d.data.hwTravelLine.line_restaurant)//	餐饮
+							$('.l-black6 .l-content').append(d.data.hwTravelLine.line_cost_info )//	费用包含
+							$('.l-black7 .l-content').append(d.data.hwTravelLine.line_notcost_info)//	费用不含
+							$('.l-black8 .l-content').append(d.data.hwTravelLine.line_self_expense)//	自费项目
+							$('.l-black9 .l-content').append(d.data.hwTravelLine.line_predetermined_instructions)//	预定须知
+							$('.l-black10 .l-content').append(d.data.hwTravelLine.line_insurance_description)//	保险说明
+							$('.l-black11 .l-content').append(d.data.hwTravelLine.line_cancel_description)//	取消政策
+							$('.l-black12 .l-content').append(d.data.hwTravelLine.line_security_reminding)//	安全提醒
+							$('.l-content p , .l-content span').css('font-size' , '16px')
+						}
+					}
+				});
+				
+				/* function setPrice(m){	//	价格
+					console.log(m)
+					if(jQuery.isEmptyObject(m) == true){
+						$('.l-money').text('空')
+					}else{
+						var money = []
+						var adultPrice = []
+						var childPrice = []
+						for(var i in m){
+							money.push(JSON.parse(m[i]))
+						}
+						for(var i=0; i<money.length; i++){
+							adultPrice.push(money[i].adultPrice)
+							childPrice.push(money[i].childPrice)
+						}
+						var maxadultPrice = Math.max.apply(null , adultPrice)
+						var minadultPrice = Math.min.apply(null , adultPrice)
+						var maxchildPrice = Math.max.apply(null , childPrice)
+						var minchildPrice = Math.min.apply(null , childPrice)
+						if(maxadultPrice == minadultPrice){
+							$('.l-money').text('￥'+maxadultPrice+'')
+						}else{
+							$('.l-money').text('￥'+minadultPrice+'-'+maxadultPrice+'')
+						}
+					}
+					
+				} */
+				
+				function setPrice(min,max){
+					if(jQuery.isEmptyObject(min) == true&&jQuery.isEmptyObject(max) == true){
+						$('.l-money').text('空')
+					}
+					if(min == max){
+						$('.l-money').text('￥'+max+'')
+					}else{
+						$('.l-money').text('￥'+min+'-'+max+'')
+					}
+				}
+				
+				function setBanner(b){		//		设置banner
+					var banner = new Array();
+					banner = b.split(',')
+					for(var i=0; i<banner.length; i++){
+						$('.swiper-wrapper').append('<div class="swiper-slide"><img src='+banner[i]+'></div>')
+					}
+					var mySwiper = new Swiper ('.swiper-container', {
+					    direction: 'horizontal',
+					    loop: true,
+					    pagination: {	//		分页器
+					      el: '.swiper-pagination',
+					    },
+					})
+					$('.l-phone').css('display' , 'none')
+				}
+				
+				$('.switchPhone').click(function(){	//	切换手机预览
+					if(isLook == 'pc'){
+						$('.l-main').css('width' , '500px')
+						$('.l-title').css('font-size' , '16px')
+						$('.l-content p , .l-content span').css('font-size' , '12px')
+						$('.l-phone').css('display' , 'block')
+						$(this).text('切换pc预览')
+						isLook = 'phone'
+					}else if(isLook == 'phone'){
+						$('.l-main').css('width' , '790px')
+						$('.l-title').css('font-size' , '24px')
+						$('.l-content p , .l-content span').css('font-size' , '16px')
+						$('.l-phone').css('display' , 'none')
+						$(this).text('切换手机预览')
+						isLook = 'pc'
+					}
+					
+				})
+			})()
+		</script>
+	</body>
+</html>

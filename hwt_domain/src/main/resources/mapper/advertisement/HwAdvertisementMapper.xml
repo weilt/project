@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.advertisement.HwAdvertisementMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.advertisement.HwAdvertisement">
+    <id column="ad_id" jdbcType="BIGINT" property="ad_id" />
+    <result column="ad_type" jdbcType="BIGINT" property="ad_type" />
+    <result column="ad_position" jdbcType="BIGINT" property="ad_position" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="real_id" jdbcType="BIGINT" property="real_id" />
+    <result column="ad_url" jdbcType="VARCHAR" property="ad_url" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="click_num" jdbcType="BIGINT" property="click_num" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="start_time" jdbcType="BIGINT" property="start_time" />
+    <result column="end_time" jdbcType="BIGINT" property="end_time" />
+    <result column="is_hide" jdbcType="INTEGER" property="is_hide" />
+    <result column="is_online" jdbcType="INTEGER" property="is_online" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ad_id, ad_type, ad_position, title, real_id, ad_url, image, sort, click_num, create_time, 
+    start_time, end_time, is_hide, is_online
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_advertisement
+    where ad_id = #{ad_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_advertisement
+    where ad_id = #{ad_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.advertisement.HwAdvertisement">
+    insert into hw_advertisement (ad_id, ad_type, ad_position, 
+      title, real_id, ad_url, 
+      image, sort, click_num, 
+      create_time, start_time, end_time, 
+      is_hide, is_online)
+    values (#{ad_id,jdbcType=BIGINT}, #{ad_type,jdbcType=BIGINT}, #{ad_position,jdbcType=BIGINT}, 
+      #{title,jdbcType=VARCHAR}, #{real_id,jdbcType=BIGINT}, #{ad_url,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{click_num,jdbcType=BIGINT}, 
+      #{create_time,jdbcType=BIGINT}, #{start_time,jdbcType=BIGINT}, #{end_time,jdbcType=BIGINT}, 
+      #{is_hide,jdbcType=INTEGER}, #{is_online,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.advertisement.HwAdvertisement">
+    insert into hw_advertisement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ad_id != null">
+        ad_id,
+      </if>
+      <if test="ad_type != null">
+        ad_type,
+      </if>
+      <if test="ad_position != null">
+        ad_position,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="real_id != null">
+        real_id,
+      </if>
+      <if test="ad_url != null">
+        ad_url,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="click_num != null">
+        click_num,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="start_time != null">
+        start_time,
+      </if>
+      <if test="end_time != null">
+        end_time,
+      </if>
+      <if test="is_hide != null">
+        is_hide,
+      </if>
+      <if test="is_online != null">
+        is_online,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ad_id != null">
+        #{ad_id,jdbcType=BIGINT},
+      </if>
+      <if test="ad_type != null">
+        #{ad_type,jdbcType=BIGINT},
+      </if>
+      <if test="ad_position != null">
+        #{ad_position,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="real_id != null">
+        #{real_id,jdbcType=BIGINT},
+      </if>
+      <if test="ad_url != null">
+        #{ad_url,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="click_num != null">
+        #{click_num,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="start_time != null">
+        #{start_time,jdbcType=BIGINT},
+      </if>
+      <if test="end_time != null">
+        #{end_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_hide != null">
+        #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="is_online != null">
+        #{is_online,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+   <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.advertisement.HwAdvertisement">
+    update hw_advertisement
+    <set>
+      <if test="ad_type != null">
+        ad_type = #{ad_type,jdbcType=BIGINT},
+      </if>
+      <if test="ad_position != null">
+        ad_position = #{ad_position,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="real_id != null">
+        real_id = #{real_id,jdbcType=BIGINT},
+      </if>
+      <if test="ad_url != null">
+        ad_url = #{ad_url,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="click_num != null">
+        click_num = #{click_num,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="start_time != null">
+        start_time = #{start_time,jdbcType=BIGINT},
+      </if>
+      <if test="end_time != null">
+        end_time = #{end_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_hide != null">
+        is_hide = #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="is_online != null">
+        is_online = #{is_online,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ad_id = #{ad_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.advertisement.HwAdvertisement">
+    update hw_advertisement
+    set ad_type = #{ad_type,jdbcType=BIGINT},
+      ad_position = #{ad_position,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      real_id = #{real_id,jdbcType=BIGINT},
+      ad_url = #{ad_url,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      click_num = #{click_num,jdbcType=BIGINT},
+      create_time = #{create_time,jdbcType=BIGINT},
+      start_time = #{start_time,jdbcType=BIGINT},
+      end_time = #{end_time,jdbcType=BIGINT},
+      is_hide = #{is_hide,jdbcType=INTEGER},
+      is_online = #{is_online,jdbcType=INTEGER}
+    where ad_id = #{ad_id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- queryCountAdminByMap 通过条件查询总条数 -->
+  <select id="queryCountAdminByMap" resultType="java.lang.Long" parameterType="map">
+  	select count(ad_id) from hw_advertisement  where 1=1 
+  	<if test="title != null and title!=''">
+  		and  `title` like '%${title}%'
+  	
+  	</if>
+   <if test="ad_type != null and ad_type !=0">
+   		and ad_type = #{ad_type}
+   </if>
+  
+  </select>
+  
+  <!--  queryAdminByMap 查询数据给后台-->
+  <select id="queryAdminByMap" resultType="java.util.Map" parameterType="map">
+  	select a.ad_id,a.title,a.click_num,a.is_online,a.create_time,a.is_hide, b.attribute_name as ad_type, c.attribute_name as ad_position 
+  		
+  		from hw_advertisement a ,hw_attribute b ,hw_attribute c 
+  	
+  		where 1=1 and b.attribute_id = a.ad_type and c.attribute_id = ad_position 
+  	
+  	<if test="title != null and title!=''">
+  		and  a.`title` like '%${title}%'
+  	
+  	</if>
+  	
+   <if test="ad_type != null and ad_type !=0">
+   		and a.ad_type = #{ad_type}
+   </if>
+   
+   <if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> -->a.${orderBy}
+	</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+  
+  </select>
+</mapper>

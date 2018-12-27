@@ -1,0 +1,572 @@
+
+  <head>
+      <link href="/model/lib/highlightjs/github.css" rel="stylesheet">
+      <link href="/model/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+      <link href="/model/lib/select2/css/select2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="/model/css/bracket.css">
+      <link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+      
+      <link href="/plugins/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">  
+      
+      <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=4784f9fde42266b8300aa2fe374a83fb&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+      
+      <style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			.bigbox{
+				display: table;
+				width: 625px;
+				height: auto;
+				box-sizing: border-box;
+				border: 1px solid #000;
+				margin: 100px auto;
+				padding: 10px 0 10px 5px;
+			}
+			.bigbox>div{
+				
+				width: 200px;
+				height: 200px;
+				float: left;
+				margin: 0 5px 5px 0;
+				position: relative;
+			}
+			.line{
+				width: 100%;
+				height:20px;
+				position: absolute;
+				bottom: -3px;
+			}
+			.line p{
+				width: 50%;
+				float: left;
+				text-align: center;
+				cursor: pointer;
+				transition: .3s;
+			}
+			.line p:hover{
+				color: #ccc;
+			}
+			.bigbox .addimgbtn{
+				background-color: #ccc;
+			}
+			.addimgbtn h1{
+				text-align: center;
+				margin-top: 80px;
+				cursor: pointer;
+			}
+			.imgbox{
+				width: 100%;
+				height: 180px;
+				background-color: #A52A2A;
+			}
+		</style>
+  </head>
+
+  <body>
+<!--请求路径-->
+  <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="/main">首页</a>
+          <a class="breadcrumb-item" href="javascrip:void(0);" onclick="reCommit()">广告管理</a>
+      </nav>
+  </div>
+
+<!--页面标题-->
+<!-- <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">景点管理</h4>
+    <p class="mg-b-0">景点管理</p>
+</div> -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <div class="table-wrapper">
+            <!--查询条件-->
+            <div class="row">
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+               标题
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="标题" name="paramMap_titel" id="paramMap_titel">
+
+                    </div><!-- input-group -->
+                </div>
+               
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 pd-l-0">
+                <br />
+                    <div class="input-group">
+                        <button class="btn btn-primary mg-l-10" onclick="sreachCommit()"><i class="fa fa-search mg-r-10"></i> 搜索</button>
+                        <button class="btn btn-primary mg-l-10" onclick="add()"><i class="fa fa-plus mg-r-10"></i> 添加</button>
+                    </div><!-- input-group -->
+                </div>
+            </div>
+
+            <!--数据列表-->
+            <div id="dynamic-table_wrapper" class="dataTables_wrapper no-footer">
+                <table id="dynamic-table" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="dynamic-table_info" >
+                    <thead>
+                    <tr role="row">
+                        <th class="wd-5p parsley-checkbox " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;">
+
+                            <label class="ckbox " >
+                                <input type="checkbox" name="browser[]"><span></span>
+                            </label>
+
+                            <!--<label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label>-->
+                        </th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >编号</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >标题</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >位置</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >上线/下线</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >类别</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >发布时间</th>
+                        <th class="wd-10p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 78px;" >点击次数</th>
+                        <th class="wd-25p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 231px;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+  <!--<div class="table-wrapper">-->
+      <!--<table id="dynamic-table" class="table display responsive nowrap">-->
+          <!--<thead>-->
+          <!--<tr>-->
+              <!--<th class="wd-5p"><label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label></th>-->
+              <!--<th class="wd-10p">ID</th>-->
+              <!--<th class="wd-15p">名称</th>-->
+              <!--<th class="wd-20p">性别</th>-->
+              <!--<th class="wd-15p">时间</th>-->
+              <!--<th class="wd-10p">TOKEN</th>-->
+              <!--<th class="wd-25p">操作</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+
+          <!--</tbody>-->
+      <!--</table>-->
+  <!--</div>&lt;!&ndash; table-wrapper &ndash;&gt;-->
+  
+
+
+
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
+          <div>Attentively and carefully made by ThemePixels.</div>
+        </div>
+        <div class="footer-right d-flex align-items-center">
+          <span class="tx-uppercase mg-r-10">Share:</span>
+          <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
+          <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
+        </div>
+      </footer>
+      <script src="/model/lib/jquery/jquery.js"></script>
+      <script src="/plugins/dataTable/js/adminHx/advertisement/ro.dataTable.js"></script>
+      <script src="/plugins/dataTable/js/adminHx/advertisement/demo.dataTable.js"></script>
+      <script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+      
+      <script type="text/javascript" src="/plugins/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/plugins/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/kindeditor-base.js"></script>
+      <script src="/public/base.js"></script>
+      <script src="/public/advertisement_kindeditor.js"></script>
+      
+      
+
+<!--<script src="/model/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>-->
+<!--<script src="/model/lib/d3/d3.js"></script>-->
+
+    <script>
+    
+	
+    	function name() {
+			
+		}
+    	
+    	function add(){
+    		$.ajax({
+    	        url : "adminHx/advertisement/attribute",
+    	        type : "POST",
+    	        data : {},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	          
+    	            	var data = res.data;
+    	            	//广告的分类
+    	            	var carousel_image_types = data.carousel_image_types;
+    	            	var carousel_image = "";
+						for (var  i= 0; i < carousel_image_types.length; i++) {
+		            		
+							carousel_image+='<option value="'+carousel_image_types[i].attribute_id+'">'+carousel_image_types[i].attribute_name+'</option>'
+						}
+    	            	//广告的位置
+    	            	var advertising_position = "";
+    	            	var advertising_positions = data.advertising_positions;
+						for (var  i= 0; i < advertising_positions.length; i++) {
+		            		
+							advertising_position+='<option value="'+advertising_positions[i].attribute_id+'">'+advertising_positions[i].attribute_name+'</option>'
+						}
+    	            	
+    	            	var _html = '';
+    	            	_html+='<form id="form">                                                                                                                                              '
+    	            	+'      <div class="br-pagebody">                                                                                                                               '
+    	            	+'                                                                                                                                                              '
+    	            	+'        <div class="br-section-wrapper">                                                                                                                      '
+    	            	+'            <!--内容-->                                                                                                                                       '
+    	            	+'            <div class="row">                                                                                                                                 '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>标题:</p>     '
+    	            	+'                <div class="col-lg mg-l-10">                                                                                                                  '
+    	            	+'                    <input class="form-control wd-50%" id="title" name="title"  placeholder="请输入标题" type="text">                                         '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'            <div class="row mg-t-20">                                                                                                                         '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>广告位置:</p> '
+    	            	+'                <div class="col-lg-3 mg-l-10">                                                                                                                                                  '
+	            		+'                    <select class="form-control select2 " name="ad_position" data-placeholder="ad_position" tabindex="-1" aria-hidden="true">                                                           '
+	            		+advertising_position
+	            		+'                    </select>                                                                                                                                                                   '
+	            		+'                </div>                                                                                                                               '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'              <div class="row mg-t-20">                                                                                                                       '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>类别:</p>     '
+    	            	+'                <div class="col-lg-3 mg-l-10">                                                                                                                                                  '
+	            		+'                    <select class="form-control select2 " name="ad_type" data-placeholder="ad_type" tabindex="-1" aria-hidden="true">                                                           '
+	            		+carousel_image
+	            		+'                    </select>                                                                                                                                                                   '
+	            		+'                </div>                                                                                                                                 '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'             <div class="row mg-t-20">                                                                                                                        '
+    	            	+'                 <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>上下线:</p>                   '
+    	            	+'                <div class="col-lg-0 mg-t-10 mg-l-20 wd-60">                                                                                                  '
+    	            	+'                    <label class="rdiobox ">                                                                                                                  '
+    	            	+'                        <input type="radio" name="is_online" value="1" checked><span>是</span>                                                                '
+    	            	+'                    </label>                                                                                                                                  '
+    	            	+'                </div>                                                                                                                                        '
+    	            	+'                <div class="col-lg-1 mg-t-10 m-l-0">                                                                                                          '
+    	            	+'                    <label class="rdiobox">                                                                                                                   '
+    	            	+'                        <input type="radio" name="is_online" value="0" ><span>否</span>                                                                       '
+    	            	+'                    </label>                                                                                                                                  '
+    	            	+'                </div>                                                                                                                                        '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'            <div class="row mg-t-20">                                                                                                                         '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>图片:</p>     '
+    	            	+'                <div class="col-lg mg-l-10">   <div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 onePicUpload" >添加图片</div>                                                                                                                 '
+    	            	+'                    <input class="form-control wd-50%" id="image" name="image"  type="hidden">                                                                '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'             <div class="row mg-t-20">                                                                                                                        '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>内容链接:</p> '
+    	            	+'                <div class="col-lg mg-l-10">                                                                                                                  '
+    	            	+'                    <input class="form-control wd-50%" id="ad_url" name="ad_url" placeholder="请输入链接" type="text">                                        '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'            <div class="row mg-t-20">                                                                                                                         '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>内容id:</p>   '
+    	            	+'                <div class="col-lg mg-l-10">                                                                                                                  '
+    	            	+'                    <input class="form-control wd-50%" id="real_id" name="real_id" placeholder="请输入内容id" type="number">                                    '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'            <div class="row mg-t-20">                                                                                                                         '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>排序:</p>     '
+    	            	+'                <div class="col-lg mg-l-10">                                                                                                                  '
+    	            	+'                	                                                                                                                                            '
+    	            	+'                    <select class="form-control select2 " name="sort"  data-placeholder="选择排序" tabindex="-1" aria-hidden="true">                             '
+    	        		+'                        <option value="0">0</option>                                                                                                                                              '
+    	        		+'                         <option value="1">1</option>                                                                                                                                             '
+    	        		+'                          <option value="2">2</option>                                                                                                                                            '
+    	        		+'                           <option value="3">3</option>                                                                                                                                           '
+    	        		+'                            <option value="4">4</option>                                                                                                                                          '
+    	        		+'                             <option value="5" selected="selected">5</option>                                                                                                                                         '
+    	        		+'                              <option value="6">6</option>                                                                                                                                        '
+    	        		+'                               <option value="7">7</option>                                                                                                                                       '
+    	        		+'                                <option value="8">8</option>                                                                                                                                      '
+    	        		+'                                 <option value="9">9</option>                                                                                                                                     '
+    	        		+'                                                                                                                                                                                                  '
+    	        		+'                                                                                                                                                                                                  '
+    	        		+'                    </select>  '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'                                                                                                                                                              '
+    	            	+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+    	    			+'				<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                                                  '
+    	    			+'				<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="insert_advertisement(\'adminHx/advertisement/insert\',\'form\')">确定</div>                                                             '
+    	    			+'			</div>           '
+    	            	+'        </div><!-- br-section-wrapper -->                                                                                                                     '
+    	            	+'      </div><!-- br-pagebody -->                                                                                                                              '
+    	            	+'       </form>                                                                                                                                                '
+    	            	+'       <div style=""></div>                                                                                                                                   '
+    	            	fromEject(_html,'广告添加','80%','80%');
+    	        	    
+    	            	//页面初始化完毕后执行此方法  
+    	        	    $(function(){  
+    	        	        //初始化类目选择和图片上传器  
+    	        	        E3.initOnePicUpload(); 
+    	        	    });  
+    	            
+    	        }
+    	    })
+    	}
+    	
+    	function insert_advertisement(url,form){
+    		insert(url,form);
+    	}
+    	
+    	//修改
+    	function edit_advertisement(id,url,dec){
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data : {ad_id:id},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	          
+    	            	var advertisement = res.data.advertisement
+    	            	var ad_id = advertisement.ad_id;
+    	            	var ad_type = advertisement.ad_type;
+    	            	var ad_position = advertisement.ad_position;
+    	            	var title = advertisement.title==null?"":advertisement.title;
+    	            	var ad_url = advertisement.ad_url==null?"":advertisement.ad_url;
+    	            	var image = advertisement.image==null?"":advertisement.image;
+    	            	var sort = advertisement.sort;
+    	            	var is_online = advertisement.is_online;
+    	            	var real_id = advertisement.real_id;
+    	            	
+    	            	//广告的分类
+    	               	var carousel_image_types = res.data.carousel_image_types;
+    	               	var carousel_image = "";
+    	    			for (var  i= 0; i < carousel_image_types.length; i++) {
+    	               		if (carousel_image_types[i].attribute_id == ad_type){
+    	               			carousel_image+='<option value="'+carousel_image_types[i].attribute_id+'" selected = "selected">'+carousel_image_types[i].attribute_name+'</option>'
+    	               		} else {
+    	               			carousel_image+='<option value="'+carousel_image_types[i].attribute_id+'">'+carousel_image_types[i].attribute_name+'</option>'
+    	               		}
+    	               		
+    	    				
+    	    			}
+    	    			
+    	               	//广告的位置
+    	               	var advertising_position = "";
+    	               	var advertising_positions = res.data.advertising_positions;
+    	    			for (var  i= 0; i < advertising_positions.length; i++) {
+    	    				if (advertising_positions[i].attribute_id == ad_position){
+    	    					advertising_position+='<option value="'+advertising_positions[i].attribute_id+'" selected = "selected">'+advertising_positions[i].attribute_name+'</option>'
+    	    				} else {
+    	    					advertising_position+='<option value="'+advertising_positions[i].attribute_id+'">'+advertising_positions[i].attribute_name+'</option>'
+    	    				}
+    	    				
+    	    			}
+    	    			
+    	    			//排序
+    	    			var _sort = '';
+    	    			for (var i = 0; i < 10; i++) {
+    	    				if (sort == 1){
+    	    					_sort+='<option value="'+i+'" selected = "selected">'+i+'</option>'
+    	    				} else {
+    	    					_sort+='<option value="'+i+'">'+i+'</option>'
+    	    				}
+    	    				
+						}
+    	    			
+    	    			//是否显示
+    	    			var _is_online = "";
+    	    			_is_online+='                <div class="col-lg-0 mg-t-10 mg-l-20 wd-60">                                                                                                  '
+    	            	+'                    <label class="rdiobox ">                                                                                                                  '
+    	            	+'                        <input type="radio" name="is_online" value="1" '
+    	            	if(is_online==1){
+    	            		_is_online+=' checked '
+    	            	}
+    	            	_is_online+='><span>是</span>                                                                '
+    	            	+'                    </label>                                                                                                                                  '
+    	            	+'                </div>                                                                                                                                        '
+    	            	+'                <div class="col-lg-1 mg-t-10 m-l-0">                                                                                                          '
+    	            	+'                    <label class="rdiobox">                                                                                                                   '
+    	            	+'                        <input type="radio" name="is_online" value="0"'
+    	            	if (is_online!=1){
+    	            		_is_online+=' checked '
+    	            	}
+    	            	_is_online+=' ><span>否</span>                                                                       '
+    	            	+'                    </label>                                                                                                                                  '
+    	            	+'                </div>                                  '
+    	          
+    	            //图片
+    	            var _image = '<a href="'+image+'" target="_blank"><img src="'+image+'" width="80" height="50"></a>';
+    	            
+    	            	var _html = '';
+    	            	_html+='<form id="form">                                                                                                                                              '
+    	            	+'      <div class="br-pagebody">                                                                                                                               '
+    	            	+'                              <input class="form-control wd-50%" id="ad_id" name="ad_id"  value="'+ad_id+'" type="hidden">                                                                                                                                '
+    	            	+'        <div class="br-section-wrapper">                                                                                                                      '
+    	            	+'            <!--内容-->                                                                                                                                       '
+    	            	+'            <div class="row">                                                                                                                                 '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>标题:</p>     '
+    	            	+'                <div class="col-lg mg-l-10">                                                                                                                  '
+    	            	+'                    <input class="form-control wd-50%" id="title" name="title" value="'+title+'"  placeholder="请输入标题" type="text">                                         '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'            <div class="row mg-t-20">                                                                                                                         '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>广告位置:</p> '
+    	            	+'                <div class="col-lg-3 mg-l-10">                                                                                                                                                  '
+	            		+'                    <select class="form-control select2 " name="ad_position" data-placeholder="ad_position" tabindex="-1" aria-hidden="true">                                                           '
+	            		+advertising_position
+	            		+'                    </select>                                                                                                                                                                   '
+	            		+'                </div>                                                                                                                               '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'              <div class="row mg-t-20">                                                                                                                       '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>类别:</p>     '
+    	            	+'                <div class="col-lg-3 mg-l-10">                                                                                                                                                  '
+	            		+'                    <select class="form-control select2 " name="ad_type" data-placeholder="ad_type" tabindex="-1" aria-hidden="true">                                                           '
+	            		+carousel_image
+	            		+'                    </select>                                                                                                                                                                   '
+	            		+'                </div>                                                                                                                                 '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'             <div class="row mg-t-20">                                                                                                                        '
+    	            	+'                 <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>上下线:</p>                   '
+    	            	+_is_online
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'            <div class="row mg-t-20">                                                                                                                         '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>图片:</p>     '
+    	            	+'                <div class="col-lg mg-l-10">   <div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 onePicUpload" >添加图片</div>                                                                                                                 '
+    	            	+'                    <input class="form-control wd-50%" id="image" name="image"  value="'+image+'" type="hidden"> '+_image+'                                                               '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'             <div class="row mg-t-20">                                                                                                                        '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>内容链接:</p> '
+    	            	+'                <div class="col-lg mg-l-10">                                                                                                                  '
+    	            	+'                    <input class="form-control wd-50%" id="ad_url" name="ad_url" value="'+ad_url+'" placeholder="请输入链接" type="text">                                        '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'            <div class="row mg-t-20">                                                                                                                         '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>内容id:</p>   '
+    	            	+'                <div class="col-lg mg-l-10">                                                                                                                  '
+    	            	+'                    <input class="form-control wd-50%" id="real_id" name="real_id" value="'+real_id+'" placeholder="请输入内容id" type="number">                                    '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'            <div class="row mg-t-20">                                                                                                                         '
+    	            	+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>排序:</p>     '
+    	            	+'                <div class="col-lg mg-l-10">                                                                                                                  '
+    	            	+'                	                                                                                                                                            '
+    	            	+'                    <select class="form-control select2 " name="sort"  data-placeholder="选择排序" tabindex="-1" aria-hidden="true">                             '
+    	        		+_sort
+    	            	+'                    </select>  '
+    	            	+'                </div><!-- col -->                                                                                                                            '
+    	            	+'            </div>                                                                                                                                            '
+    	            	+'                                                                                                                                                              '
+    	            	+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+    	    			+'				<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                                                  '
+    	    			+'				<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="update_advertisement(\'adminHx/advertisement/update\',\'form\')">确定</div>                                                             '
+    	    			+'			</div>           '
+    	            	+'        </div><!-- br-section-wrapper -->                                                                                                                     '
+    	            	+'      </div><!-- br-pagebody -->                                                                                                                              '
+    	            	+'       </form>                                                                                                                                                '
+    	            	+'       <div style=""></div>                                                                                                                                   '
+    	            	fromEject(_html,'广告添加','80%','80%');
+    	        	    
+    	            	//页面初始化完毕后执行此方法  
+    	        	    $(function(){  
+    	        	        //初始化类目选择和图片上传器  
+    	        	        E3.initOnePicUpload(); 
+    	        	    });  
+    	           
+    	        }
+    	    })
+    	}
+    	
+    	function update_advertisement(url,form){
+    		update(url,form);
+    	}
+    	
+    	//删除
+    	function is_hideAndRecoveryById(id,url,dec){
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data :{"ad_id":id},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	           
+    	            	
+    	            	layer.alert(res.msg,{icon: 6},function(){
+    	            	
+    	            		layer.closeAll();
+    	            		
+    	            		reloadTable($("#dynamic-table"))
+    	            	});
+    	            
+    	        }
+    	    })
+    	}
+    	//恢复
+    	function is_not_hideAndRecoveryById(id,url,dec){
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data :{"ad_id":id},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	         
+    	            	
+    	            	layer.alert(res.msg,{icon: 6},function(){
+    	            	
+    	            		layer.closeAll();
+    	            		
+    	            		reloadTable($("#dynamic-table"))
+    	            	});
+    	           
+    	        }
+    	    })
+    	}
+    	//下线
+    	function is_not_displayAndRecoveryById(id,url,dec){
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data :{"ad_id":id},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	           
+    	            	
+    	            	layer.alert(res.msg,{icon: 6},function(){
+    	            	
+    	            		layer.closeAll();
+    	            		
+    	            		reloadTable($("#dynamic-table"))
+    	            	});
+    	            
+    	        }
+    	    })
+    	}
+    	//上线
+    	function is_displayAndRecoveryById(id,url,dec){
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data :{"ad_id":id},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	           
+    	            	
+    	            	layer.alert(res.msg,{icon: 6},function(){
+    	            	
+    	            		layer.closeAll();
+    	            		
+    	            		reloadTable($("#dynamic-table"))
+    	            	});
+    	            
+    	        }
+    	    })
+    	}
+    </script>
+   
+  </body>

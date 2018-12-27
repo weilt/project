@@ -1,0 +1,16 @@
+.input-group1 {
+  display: inline-block !important;
+  width: 150px;
+}
+.input-group1 select , .z-zzz select{
+  width: 150px;
+  height: 35px;
+}
+.z-zzz{
+  margin-left: 30px;
+}
+.z-bbb{
+  margin-left: 100px;
+  top: -20px;
+  left: 50px;
+}

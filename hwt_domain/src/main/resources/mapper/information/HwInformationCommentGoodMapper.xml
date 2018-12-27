@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.information.HwInformationCommentGoodMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.information.HwInformationCommentGood">
+    <id column="user_id" jdbcType="BIGINT" property="user_id" />
+    <id column="comment_id" jdbcType="BIGINT" property="comment_id" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List">
+    user_id, comment_id, create_time
+  </sql>
+  
+ 
+  <insert id="insert" parameterType="com.hwt.domain.entity.information.HwInformationCommentGood">
+    insert into hw_information_comment_good (user_id, comment_id, create_time
+      )
+    values (#{user_id,jdbcType=BIGINT}, #{comment_id,jdbcType=BIGINT}, #{create_time,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.information.HwInformationCommentGood">
+    insert into hw_information_comment_good
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="comment_id != null">
+        comment_id,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="comment_id != null">
+        #{comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.information.HwInformationCommentGood">
+    update hw_information_comment_good
+    <set>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where user_id = #{user_id,jdbcType=BIGINT}
+      and comment_id = #{comment_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.information.HwInformationCommentGood">
+    update hw_information_comment_good
+    set create_time = #{create_time,jdbcType=BIGINT}
+    where user_id = #{user_id,jdbcType=BIGINT}
+      and comment_id = #{comment_id,jdbcType=BIGINT}
+  </update>
+</mapper>

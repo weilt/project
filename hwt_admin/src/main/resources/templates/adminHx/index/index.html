@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="/model/lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/public/base.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.zry-h_main{
+				width: 100%;
+				height: 100%;
+				background-color: rgb(241,242,247);
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+			.zry-h_head{
+				display: flex;
+				width: 1652px;
+				height: 172px;
+				margin: 0px auto 22px auto;
+			}
+			.zry-h_head div{
+				width: 383px;
+				height: 100%;
+				background-color: #FFFFFF;
+				margin-left: 40px;
+				-moz-box-shadow:0px 0px 9px #333333;
+				-webkit-box-shadow:0px 0px 9px #333333;
+				box-shadow:0px 0px 9px #999;
+				padding: 30px 20px;
+				position: relative;
+			}
+			.zry-h_head div:nth-child(1){
+				margin-left: 0;
+			}
+			.zry-h_head p{
+				overflow: auto;
+				zoom: 1;
+			}
+			.zry-h_dayAdd{
+				font-family: "microsoft yahei";
+				font-size: 24px;
+				color: #82878d;
+				float: left;
+			}
+			.zry-h_dayMoney{
+				font-size: 37px;
+				color: #202020;
+				float: right;
+			}
+			.zry-h_imgs{
+				margin-top: 10px;
+			}
+			.zry-h_content{
+				width: 1652px;
+				height: 386px;
+				margin: 0 auto 22px auto;
+				background-color: #FFFFFF;
+				-moz-box-shadow:0px 0px 10px #BABABA; 
+				-webkit-box-shadow:0px 0px 10px #BABABA; 
+				box-shadow:0px 0px 10px #BABABA;
+			}
+			.zry-h_contentHead{
+				width: 100%;
+				height: 88px;
+				padding-left: 46px;
+				padding-right: 5px;
+				line-height: 88px;
+				position: relative;
+			}
+			.zry-h_contentHead .zry-h_contentHeadP{
+				font-family: "microsoft yahei";
+				font-size: 28px;
+				color: #54657e;
+				position: relative;
+			}
+			.zry-h_contentHead zry-h_contentHeadP:after{
+				content: '';
+				display: block;
+				width: 4px;
+				height: 24px;
+				background-color: rgb(205,38,38);
+				position: absolute;
+				left: -22px;
+				top: 35px;
+			}
+			.zry-h_contentHeadP2{
+				position: absolute;
+				top: 0;
+				right: 20px
+			}
+			.zry-h_contentBody{
+				display: flex;
+				width: 100%;
+				height: 184px;
+				margin-top: 42px;
+				padding: 0 50px;
+			}
+			.zry-h_contentBody div{
+				width: 354px;
+				height: 100%;
+				border-radius: 10px;
+				padding: 50px 40px;
+				margin-left: 37px;
+			}
+			.zry-h_contentBody div:nth-child(1){
+				background-color: #e99713;
+				margin-left: 0px;
+			}
+			.zry-h_contentBody div:nth-child(2){
+				background-color: #eb4549;
+			}
+			.zry-h_contentBody div:nth-child(3){
+				background-color: #00c794;
+			}
+			.zry-h_contentBody div:nth-child(4){
+				background-color: #78b1ec;
+			}
+			.zry-h_contentBody p{
+				display: flex;
+				color: #FFFFFF;
+				font-family: "microsoft yahei";
+				font-size: 22px;
+				align-items: center;
+			}
+			.zry-h_contentBody img{
+				margin-right: 15px;
+			}
+			.zry-h_contentBody span{
+				display: block;
+				width: 100%;
+				text-align: center;
+				font-family: "microsoft yahei";
+				font-size: 30px;
+				color: #FFFFFF;
+				margin-top: 20px;
+			}
+			.zry-h_bottomBox{
+				display: flex;
+				width: 1652px;
+				height: 350px;
+				margin: 0 auto;
+				-moz-box-shadow:0px 0px 10px #BABABA; 
+				-webkit-box-shadow:0px 0px 10px #BABABA; 
+				box-shadow:0px 0px 10px #BABABA;
+			}
+			.zry-h_bottomBox>div{
+				flex: 1;
+				background-color: #FFFFFF;
+				margin-right: 18px;
+				border-radius: 5px;
+				padding: 32px 106px 0 68px;
+			}
+			.zry-h_bottomBox>div:nth-child(2){
+				margin-right: 0;
+			}
+			.zry-h_linBox{
+				width: 637px;
+				height: auto;
+				font-family: "microsoft yahei";
+				font-size: 20px;
+				color: #54657e;
+				margin-bottom: 50px;
+			}
+			.zry-h_linBox p{
+				position: relative;
+			}
+			.zry-h_linBox span{
+				position: absolute;
+				right: 50px;
+			}
+			.zry-h_linBox .zry-h_lin{
+				width: 100%;
+				height: 10px;
+				border-radius: 5px;
+				background-color: rgb(236,239,244);
+				margin-top: 15px;
+			}
+			.zry-h_lin div{
+				width: 0%;
+				height: 100%;
+				cursor: pointer;
+				transition: .1s;
+				border-radius: 5px;
+			}
+			.zry-h_linL1 div , .zry-h_linR1 div{
+				background-color: rgb(255,187,57);
+			}
+			.zry-h_linL2 div , .zry-h_linR2 div{
+				background-color: rgb(235,69,73);
+			}
+			.zry-h_linL3 div , .zry-h_linR3 div{
+				background-color: #00c794;
+			}
+			
+			.zry-h_lin div:hover{
+				transform: scale(1.1)
+			}
+			.title-box{
+				font-size: 14px;
+				color: #666;
+				padding: 12px 0px 12px 20px;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="zry-h_main">
+			<div class="zry-h_head">
+				<div>
+					<p>
+						<span class="zry-h_dayAdd">今日新增</span>
+						<span class="zry-h_dayMoney">${adminHome.today?c}</span>
+					</p>
+					<img src="/plugins/imgs/1.png" class="zry-h_imgs" />
+				</div>
+				<div>
+					<p>
+						<span class="zry-h_dayAdd">昨日新增</span>
+						<span class="zry-h_dayMoney">${adminHome.yesterday?c}</span>
+					</p>
+					<img src="/plugins/imgs/Shape1.png" class="zry-h_imgs" />
+				</div>
+				<div>
+					<p>
+						<span class="zry-h_dayAdd">本月新增</span>
+						<span class="zry-h_dayMoney">${adminHome.month?c}</span>
+					</p>
+					<img src="/plugins/imgs/Shape6.png" class="zry-h_imgs" />
+				</div>
+				<div>
+					<p>
+						<span class="zry-h_dayAdd">用户总数</span>
+						<span class="zry-h_dayMoney">${adminHome.userCount?c}</span>
+					</p>
+					<img src="/plugins/imgs/Shape7.png" class="zry-h_imgs" />
+				</div>
+			</div>
+			
+			<div class="zry-h_content">
+				<div class="zry-h_contentHead">
+					<p class="zry-h_contentHeadP">待处理事务</p>
+					<div style="width: 100%; height: 1px; background-color: rgb(233,249,242);"></div>
+			<#if map??>
+				<#if map.last_login_time??>
+					<p class="zry-h_contentHeadP2">
+						上次登陆时间: ${map.last_login_time!''}（如果不是本人登陆，请点击<span onclick="edit_password()"> 这里 </span>）
+					</p>
+				</#if>
+			</#if>
+				</div>
+				
+				<div class="zry-h_contentBody">
+					<div onclick="jump_to('adminHx/bureaut/list')">
+						<p>
+							<img src="/plugins/imgs/user.png" />
+							商家入驻审核
+						</p>
+						<span>${adminHome.merchantCount?c}</span>
+					</div>
+					<div onclick="jump_to('admin/order/refund/list')">
+						<p>
+							<img src="/plugins/imgs/wangge.png" />
+							退款申请
+						</p>
+						<span>${adminHome.refundCount?c}</span>
+					</div>
+					<div onclick="jump_to('admin/video/list')">
+						<p>
+							<img src="/plugins/imgs/video.png" />
+							小视屏审核
+						</p>
+						<span>${adminHome.videoCount?c}</span>
+					</div>
+					<div onclick="jump_to('admin/account/list')">
+						<p>
+							<img src="/plugins/imgs/account.png" />
+							提现申请
+						</p>
+						<span>${adminHome.depositCount?c}</span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="zry-h_bottomBox">
+				<div class="zry-h_bottomL">
+					<div class="zry-h_linBox zry-h_linBox1">
+						<p>平台今日订单数<span></span></p>
+						<div class="zry-h_lin zry-h_linL1">
+							<div></div>
+						</div>
+					</div>
+					<div class="zry-h_linBox zry-h_linBox2">
+						<p>今日导游订单数<span></span></p>
+						<div class="zry-h_lin zry-h_linL2">
+							<div></div>
+						</div>
+					</div>
+					<div class="zry-h_linBox zry-h_linBox3">
+						<p>今日线路订单数<span></span></p>
+						<div class="zry-h_lin zry-h_linL3">
+							<div></div>
+						</div>
+					</div>
+				</div>
+				<div class="zry-h_bottomR">
+					<div class="zry-h_linBox zry-h_linBox4">
+						<p>平台今日销售总额<span></span></p>
+						<div class="zry-h_lin zry-h_linR1">
+							<div></div>
+						</div>
+					</div>
+					<div class="zry-h_linBox zry-h_linBox5">
+						<p>平台昨日销售总额<span></span></p>
+						<div class="zry-h_lin zry-h_linR2">
+							<div></div>
+						</div>
+					</div>
+					<div class="zry-h_linBox zry-h_linBox6">
+						<p>近7天销售总额<span></span></p>
+						<div class="zry-h_lin zry-h_linR3">
+							<div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var domWidth = $('.zry-h_lin').width()
+			var order = {
+				orderMax: 500,		//	最大订单数
+				orderTotal:${adminHome.orderCount?c},		//	订单总数
+				orderGuide: ${adminHome.orderGuideCount?c},		//	导游订单数
+				orderDay: ${adminHome.orderCircuitCount?c},		//	线路订单数
+			}
+			var money = {
+				moneyMax: 10000,		//	最大金额
+				toDayMoney: ${adminHome.todayAmount?c},	//	平台今日销售总额
+				yesterdayMoney: ${adminHome.yesterdayAmount?c},	//	平台昨日销售总额
+				sevenMoney: ${adminHome.hebdomadAmount?c},		//	近7天销售总额
+			}
+			drawOrder()
+			drawMoney()
+			
+			function setWidth(num1 , num2){
+				var a = (num1 / num2) * 100
+				var b = domWidth * toPoint(a+'%')
+				return b + 'px'
+			}
+			function drawOrder(){	//	画订单
+				$('.zry-h_linL1 div').css('width' , setWidth(order.orderTotal , order.orderMax))	//	订单总数展示
+				$('.zry-h_linBox1 span').text(order.orderTotal)	//	订单总数展示
+				$('.zry-h_linL2 div').css('width' , setWidth(order.orderGuide , order.orderMax/2))	//	导游订单展示
+				$('.zry-h_linBox2 span').text(order.orderGuide)	//	订单总数展示
+				$('.zry-h_linL3 div').css('width' , setWidth(order.orderDay , order.orderMax/2))	//	线路订单展示
+				$('.zry-h_linBox3 span').text(order.orderDay)	//	订单总数展示
+			}
+			
+			function drawMoney(){	//	画金额
+				$('.zry-h_linR1 div').css('width' , setWidth(money.toDayMoney , money.moneyMax/2))	//	今日销售总额
+				$('.zry-h_linBox4 span').text(money.toDayMoney)	//	今日销售总额
+				$('.zry-h_linR2 div').css('width' , setWidth(money.yesterdayMoney , money.moneyMax/2))	//	昨日销售总额
+				$('.zry-h_linBox5 span').text(money.yesterdayMoney)	//	昨日销售总额
+				$('.zry-h_linR3 div').css('width' , setWidth(money.sevenMoney , money.moneyMax))	//	近7天销售总额
+				$('.zry-h_linBox6 span').text(money.sevenMoney)	//	近7天销售总额
+			}
+			
+			function toPoint(percent){	//	将百分数转小数
+			    var str=percent.replace("%","");
+			    str= str/100;
+			    return str;
+			}
+
+
+            $(function (){
+                $.ajax({
+                    url : "/adminhomePagequery",
+                    type : "POST",
+                    data : {},
+                    success : function (res) {
+                        res = strToJson(res);
+                        jsonState(res);
+                      
+							var data = res.data;
+                            setChart("myChart" , data.ordinate, data.abscissa )
+                        
+                    }
+                })
+            })
+
+
+            //修改密码
+            function edit_password(){
+                var _html="";
+                _html+='<form id = "form">                                                                                                                                                                                                       '
+                    +'      <div class="br-pagebody">                                                                                                                                                                               '
+                    +'                                                                                                                                                                                                              '
+                    +'        <div class="br-section-wrapper">                                                                                                                                                                      '
+                    +'            <!--内容-->                                                                                                                                                                                       '
+                    +'                                                                                                                                                                                                              '
+                    +'            <div class="row mg-t-20">                                                                                                                                                                         '
+                    +'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>旧密码:</p>                                                                          '
+                    +'                <div class="col-lg mg-l-10">                                                                                                                                                                  '
+                    +'                    <input class="form-control wd-50%" id="oldPassword" name="oldPassword"  type="password" value="">                                                                                               '
+                    +'                </div><!-- col -->                                                                                                                                                                            '
+                    +'            </div>                                                                                                                                                                                            '
+                    +'           <div class="row mg-t-20">                                                                                                                                                                          '
+                    +'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>新密码:</p>                                                                              '
+                    +'                <div class="col-lg mg-l-10">                                                                                                                                                                  '
+                    +'                    <input class="form-control wd-50%" id="password" name="password" type="password" value="">                                                                                    '
+                    +'                </div><!-- col -->                                                                                                                                                                            '
+                    +'            </div>                                                                                                                                                                                            '
+                    +'            <div class="row mg-t-20">                                                                                                                                                                         '
+                    +'            	<p  style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>确认密码:</p>                                                                    '
+                    +'                <div class="col-lg mg-l-10">                                                                                                                                                                  '
+                    +'                    <input class="form-control wd-50%" id="conPassword" name="conPassword" type="password" value="">                                                                                    '
+                    +'                </div><!-- col -->                                                                                                                                                             '
+                    +'            </div>                                                                                                                                                                                            '
+                    +'            <div class="row mg-t-20">                                                                                                                                                                         '
+                    +'                <div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                                 '
+                    +'                <div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="insert_editPassWord(\'/passWord\',\'form\')">确定</div>'
+                    +'            </div>                                                                                                                                                                                            '
+                    +'                                                                                                                                                                                                              '
+                    +'        </div><!-- br-section-wrapper -->                                                                                                                                                                     '
+                    +'      </div><!-- br-pagebody -->                                                                                                                                                                              '
+                    +'       </form>   '
+
+                fromEject(_html,"密码修改",'50%','50%');
+            }
+
+            /**
+             * 取消表单layer弹出表单的情况
+
+             */
+            function cancelFormLayer(){
+                layer.closeAll();
+            }
+
+            /**
+			 * 修改密码
+             * @param url
+             * @param form
+             */
+            function insert_editPassWord(url, form){
+                if (validation(["oldPassword","password","conPassword","password"],[null,null,null,'Min'],["旧密码不能为空！","新密码不能为空！","确认密码不能为空！","6"])){
+
+                    insert(url,form);
+                }else{
+                    return
+                }
+            }
+
+
+            function jump_to(url){
+                /* var urls = $(".nav-link");
+                for (var i = 0; i < urls.length; i++) {
+                    var url1 = $(urls[i]).attr("onclick").toString();
+                    if (url1.indexOf(url) >= 0){
+                        var ul = $(urls[i]).parent("ul")
+                        jumpToPage(url,$(urls[i]));
+                    }
+                } */
+                jumpToPage(url);
+            }
+		</script>
+	</body>
+</html>

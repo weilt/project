@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.information.HwInformationCommentMapper">
+   <resultMap id="BaseResultMap" type="com.hwt.domain.entity.information.HwInformationComment">
+    <id column="comment_id" jdbcType="BIGINT" property="comment_id" />
+    <result column="information_id" jdbcType="BIGINT" property="information_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="parent_user_id" jdbcType="BIGINT" property="parent_user_id" />
+    <result column="parent_comment_id" jdbcType="BIGINT" property="parent_comment_id" />
+    <result column="is_top" jdbcType="INTEGER" property="is_top" />
+    <result column="relation_comment_id" jdbcType="BIGINT" property="relation_comment_id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="is_hide" jdbcType="INTEGER" property="is_hide" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="good_num" jdbcType="BIGINT" property="good_num" />
+    <result column="comment_num" jdbcType="BIGINT" property="comment_num" />
+  </resultMap>
+  
+   <sql id="Base_Column_List">
+    comment_id, information_id, user_id, parent_user_id, parent_comment_id, is_top, relation_comment_id, 
+    content, type, is_hide, create_time, good_num, comment_num
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_information_comment
+    where comment_id = #{comment_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_information_comment
+    where comment_id = #{comment_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.information.HwInformationComment">
+    insert into hw_information_comment (comment_id, information_id, user_id, 
+      parent_user_id, parent_comment_id, is_top, 
+      relation_comment_id, content, type, 
+      is_hide, create_time, good_num, 
+      comment_num)
+    values (#{comment_id,jdbcType=BIGINT}, #{information_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, 
+      #{parent_user_id,jdbcType=BIGINT}, #{parent_comment_id,jdbcType=BIGINT}, #{is_top,jdbcType=INTEGER}, 
+      #{relation_comment_id,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{is_hide,jdbcType=INTEGER}, #{create_time,jdbcType=BIGINT}, #{good_num,jdbcType=BIGINT}, 
+      #{comment_num,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.information.HwInformationComment">
+    insert into hw_information_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="comment_id != null">
+        comment_id,
+      </if>
+      <if test="information_id != null">
+        information_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="parent_user_id != null">
+        parent_user_id,
+      </if>
+      <if test="parent_comment_id != null">
+        parent_comment_id,
+      </if>
+      <if test="is_top != null">
+        is_top,
+      </if>
+      <if test="relation_comment_id != null">
+        relation_comment_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="is_hide != null">
+        is_hide,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="good_num != null">
+        good_num,
+      </if>
+      <if test="comment_num != null">
+        comment_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="comment_id != null">
+        #{comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="information_id != null">
+        #{information_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_user_id != null">
+        #{parent_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_comment_id != null">
+        #{parent_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_top != null">
+        #{is_top,jdbcType=INTEGER},
+      </if>
+      <if test="relation_comment_id != null">
+        #{relation_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="is_hide != null">
+        #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="good_num != null">
+        #{good_num,jdbcType=BIGINT},
+      </if>
+      <if test="comment_num != null">
+        #{comment_num,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+ <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.information.HwInformationComment">
+    update hw_information_comment
+    <set>
+      <if test="information_id != null">
+        information_id = #{information_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_user_id != null">
+        parent_user_id = #{parent_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_comment_id != null">
+        parent_comment_id = #{parent_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_top != null">
+        is_top = #{is_top,jdbcType=INTEGER},
+      </if>
+      <if test="relation_comment_id != null">
+        relation_comment_id = #{relation_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="is_hide != null">
+        is_hide = #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="good_num != null">
+        good_num = #{good_num,jdbcType=BIGINT},
+      </if>
+      <if test="comment_num != null">
+        comment_num = #{comment_num,jdbcType=BIGINT},
+      </if>
+    </set>
+    where comment_id = #{comment_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.information.HwInformationComment">
+    update hw_information_comment
+    set information_id = #{information_id,jdbcType=BIGINT},
+      user_id = #{user_id,jdbcType=BIGINT},
+      parent_user_id = #{parent_user_id,jdbcType=BIGINT},
+      parent_comment_id = #{parent_comment_id,jdbcType=BIGINT},
+      is_top = #{is_top,jdbcType=INTEGER},
+      relation_comment_id = #{relation_comment_id,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      is_hide = #{is_hide,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=BIGINT},
+      good_num = #{good_num,jdbcType=BIGINT},
+      comment_num = #{comment_num,jdbcType=BIGINT}
+    where comment_id = #{comment_id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <!-- 一对多查询关联 后台 -->
+     <resultMap type="com.hwt.domain.entity.information.vo.HwInformationCommentAdminVo" id="hwInformationCommentAdminVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+           <id column="comment_id" jdbcType="BIGINT" property="comment_id" />
+		    <result column="information_id" jdbcType="BIGINT" property="information_id" />
+		    <result column="content" jdbcType="VARCHAR" property="content" />
+		    <result column="type" jdbcType="INTEGER" property="type" />
+		    <result column="is_hide" jdbcType="INTEGER" property="is_hide" />
+		    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+		    
+         <!-- 用collection标签 ,也是实体类属性要对应数据库字段-->
+         <collection property="comment_user" ofType="userVo" column="user_id"
+         	select="query_user">
+         </collection>
+             
+         <collection property="parent_comment_user" ofType="parentUserVo" column="parent_user_id"
+         	select="query_parent_user">
+         </collection>    
+     </resultMap>
+     
+     <resultMap type="com.hwt.domain.entity.information.vo.InformationCommentUserVo" id="userVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+         <id property="user_id" column="user_id"/>
+           
+     </resultMap>
+      <resultMap type="com.hwt.domain.entity.information.vo.InformationCommentUserVo" id="parentUserVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+         <id property="user_id" column="parent_user_id"/>
+           
+     </resultMap>
+     
+      <!-- 查询数据   返回给后台 -->
+     <select id="query_comment_admin" parameterType="map" resultMap="hwInformationCommentAdminVo">
+         select comment_id,information_id,content,type,is_hide,create_time,user_id,parent_user_id
+          from hw_information_comment where information_id = #{information_id} 
+         	
+          order by ${orderBy} limit #{startNum} ,#{pageSize}
+     </select>
+     
+     <!-- 通过id查询用户 -->
+     <select id="query_user" parameterType="java.lang.Long" resultMap="userVo">
+         select user_id as user_id, account as user_account , user_icon,nickname from hx_user_info where user_id = #{user_id}
+     </select>
+     <!-- 通过id查询用户 -->
+     <select id="query_parent_user" parameterType="java.lang.Long" resultMap="parentUserVo">
+         select user_id as user_id, account as user_account , user_icon,nickname  from hx_user_info where user_id = #{parent_user_id}
+     </select>
+     
+     
+      <!-- 返回主键添加 insertBackId-->
+    <insert id="insertBackId"  parameterType="com.hwt.domain.entity.information.HwInformationComment"   useGeneratedKeys="true" keyProperty="comment_id" >
+    insert into hw_information_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="comment_id != null">
+        comment_id,
+      </if>
+      <if test="information_id != null">
+        information_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="parent_user_id != null">
+        parent_user_id,
+      </if>
+      <if test="parent_comment_id != null">
+        parent_comment_id,
+      </if>
+      <if test="is_top != null">
+        is_top,
+      </if>
+      <if test="relation_comment_id != null">
+        relation_comment_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="is_hide != null">
+        is_hide,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="good_num != null">
+        good_num,
+      </if>
+      <if test="comment_num != null">
+        comment_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="comment_id != null">
+        #{comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="information_id != null">
+        #{information_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_user_id != null">
+        #{parent_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_comment_id != null">
+        #{parent_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_top != null">
+        #{is_top,jdbcType=INTEGER},
+      </if>
+      <if test="relation_comment_id != null">
+        #{relation_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="is_hide != null">
+        #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="good_num != null">
+        #{good_num,jdbcType=BIGINT},
+      </if>
+      <if test="comment_num != null">
+        #{comment_num,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

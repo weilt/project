@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.zry-v_box{
+    width: 1150px;
+    height: auto;
+    margin: 20px auto;
+    border: 1px solid #000000;
+
+}
+.zry-v_boxHead{
+    width: 100%;
+    height: 33px;
+    border-bottom: 1px solid #000000;
+    padding-left: 12px;
+    line-height: 33px;
+    background-color: rgb(244,244,244);
+}
+.zry-v_boxContent{
+    width: 100%;
+    overflow: hidden;
+    zoom: 1;
+    padding: 18px 35px;
+}
+.zry-v_boxContent>.zry-v_boxL{
+    float: left;
+}
+.zry-v_boxContent>.zry-v_boxR{
+    float: left;
+}
+.zry-v_boxL{
+    width: 356px;
+    height: 530px;
+}
+.zry-v_boxR{
+    width: 643px;
+    height: 510px;
+    margin-left: 30px;
+    position: relative;
+}
+.zry-v_boxR>p{
+    display: block;
+    height: auto;
+    max-height: 370px;
+    margin-bottom: 10px;
+    width: 100%;
+    word-wrap: break-word;
+}
+.zry-v_boxR .zry-v_p1{
+    margin-bottom: 10px;
+}
+.zry-v_remarks{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #000000;
+    position: absolute;
+    bottom: 150px;
+}
+.zry-v_remarks div{
+    width: 145px;
+    height: 100%;
+    border-right: 1px solid #000000;
+    text-align: center;
+    line-height: 40px;
+}
+.zry-v_remarks input{
+    width: 100%;
+}
+.zry-v_btnBox{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+}
+.zry-v_btnBox div{
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    cursor: pointer;
+    margin-left: 56px;
+}
+.zry-v_remarks , .zry-v_btnBox{
+    display: flex;
+}
+.zry-v_tbale{
+    width: 330px;
+    height: auto;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+}
+.zry-v_tbale>div{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #000000;
+    text-align: center;
+    line-height: 40px;
+    margin-bottom: 40px;
+}
+.zry-v_tbale>div>div{
+    width: 50%;
+    height: 100%;
+}
+.zry-v_tbale>div>div:nth-child(1){
+    border-right: 1px solid #000000;
+}
+.zry-v_boxHeadL{
+    float: left;
+}
+.zry-v_boxHeadR{
+    float: right;
+    margin-right: 12px;
+}

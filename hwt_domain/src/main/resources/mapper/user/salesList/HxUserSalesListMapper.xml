@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.salesList.HxUserSalesListMapper">
+   <!-- <resultMap id="BaseResultMap" type="com.hx.adminHx.
+.vo.HxUserSalesList">
+   
+    <result column="company_name" jdbcType="VARCHAR" property="company_name" />
+    <result column="real_name" jdbcType="VARCHAR" property="real_name" />
+  </resultMap>  -->
+  <!--//条件查询-->
+<select id="selectQuery" parameterType="java.util.Map" resultType="java.util.Map">
+  SELECT @rd:=@rd+1
+  as
+  payRow,
+  b.orderCount,
+  b.orderSum,
+  b.company_name AS real_name
+  from (SELECT
+  *
+  FROM
+  (
+  SELECT
+  @rd:=0,
+  count(0) AS orderCount,
+  sum(ho.payment) AS orderSum,
+  htb.company_name
+  FROM
+  hw_travel_bureau htb
+  LEFT JOIN hw_order ho ON htb.bureau_id = ho.bureau_id
+  WHERE
+  ho.`status` = 3
+  <if test="date1 != null and date1 != 0 and date2 != null and date2 != 0">
+    and ho.completion_time between #{date1} and #{date2}
+  </if>
+  GROUP BY
+  htb.bureau_id
+  ) AS tb
+  ORDER BY
+  tb.orderSum DESC ) as b
+</select>
+  <!--查询导游数据-->
+  <select id="selectQueryTour" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT
+    @rd :=@rd + 1 AS payRow,
+    b.orderCount,
+    b.orderSum,
+    b.real_name
+    FROM
+    (
+    SELECT
+    *
+    FROM
+    (
+    SELECT
+    @rd := 0,
+    count(0) AS orderCount,
+    sum(ho.payment) AS orderSum,
+    htb.real_name
+    FROM
+    hx_cicerone_info htb
+    LEFT JOIN hw_order ho ON htb.user_id = ho.cicerone_id
+    WHERE
+    ho.`status` = 3
+    <if test="date1 != null and date1 != 0 and date2 != null and date2 != 0">
+      and ho.completion_time between #{date1} and #{date2}
+    </if>
+    GROUP BY
+    htb.user_id
+    ) AS tb
+    ORDER BY
+    tb.orderSum DESC
+    ) AS b
+</select>
+
+</mapper>

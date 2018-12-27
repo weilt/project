@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.redPacket.HxUserRedPacketMapper">
+    <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.redPacket.HxUserRedPacket">
+	    <id column="red_packet_id" jdbcType="BIGINT" property="red_packet_id" />
+	    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+	    <result column="title" jdbcType="VARCHAR" property="title" />
+	    <result column="content" jdbcType="VARCHAR" property="content" />
+	    <result column="trans_num" jdbcType="VARCHAR" property="trans_num" />
+	    <result column="is_random" jdbcType="INTEGER" property="is_random" />
+	    <result column="group_id" jdbcType="BIGINT" property="group_id" />
+	    <result column="accept_user_id" jdbcType="BIGINT" property="accept_user_id" />
+	    <result column="send_amount" jdbcType="DECIMAL" property="send_amount" />
+	    <result column="packet_number" jdbcType="INTEGER" property="packet_number" />
+	    <result column="creat_time" jdbcType="BIGINT" property="creat_time" />
+	    <result column="linwan_time" jdbcType="BIGINT" property="linwan_time" />
+	    <result column="is_pay" jdbcType="INTEGER" property="is_pay" />
+	    <result column="pay_time" jdbcType="BIGINT" property="pay_time" />
+  	</resultMap>
+  
+   <sql id="Base_Column_List">
+    red_packet_id, user_id, title, content, trans_num, is_random, group_id, accept_user_id, 
+    send_amount, packet_number, creat_time, linwan_time, is_pay, pay_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_user_red_packet
+    where red_packet_id = #{red_packet_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_user_red_packet
+    where red_packet_id = #{red_packet_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.redPacket.HxUserRedPacket">
+    insert into hx_user_red_packet (red_packet_id, user_id, title, 
+      content, trans_num, is_random, 
+      group_id, accept_user_id, send_amount, 
+      packet_number, creat_time, linwan_time, 
+      is_pay, pay_time)
+    values (#{red_packet_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{trans_num,jdbcType=VARCHAR}, #{is_random,jdbcType=INTEGER}, 
+      #{group_id,jdbcType=BIGINT}, #{accept_user_id,jdbcType=BIGINT}, #{send_amount,jdbcType=DECIMAL}, 
+      #{packet_number,jdbcType=INTEGER}, #{creat_time,jdbcType=BIGINT}, #{linwan_time,jdbcType=BIGINT}, 
+      #{is_pay,jdbcType=INTEGER}, #{pay_time,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.redPacket.HxUserRedPacket">
+    insert into hx_user_red_packet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="red_packet_id != null">
+        red_packet_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="trans_num != null">
+        trans_num,
+      </if>
+      <if test="is_random != null">
+        is_random,
+      </if>
+      <if test="group_id != null">
+        group_id,
+      </if>
+      <if test="accept_user_id != null">
+        accept_user_id,
+      </if>
+      <if test="send_amount != null">
+        send_amount,
+      </if>
+      <if test="packet_number != null">
+        packet_number,
+      </if>
+      <if test="creat_time != null">
+        creat_time,
+      </if>
+      <if test="linwan_time != null">
+        linwan_time,
+      </if>
+      <if test="is_pay != null">
+        is_pay,
+      </if>
+      <if test="pay_time != null">
+        pay_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="red_packet_id != null">
+        #{red_packet_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="trans_num != null">
+        #{trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="is_random != null">
+        #{is_random,jdbcType=INTEGER},
+      </if>
+      <if test="group_id != null">
+        #{group_id,jdbcType=BIGINT},
+      </if>
+      <if test="accept_user_id != null">
+        #{accept_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="send_amount != null">
+        #{send_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="packet_number != null">
+        #{packet_number,jdbcType=INTEGER},
+      </if>
+      <if test="creat_time != null">
+        #{creat_time,jdbcType=BIGINT},
+      </if>
+      <if test="linwan_time != null">
+        #{linwan_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_pay != null">
+        #{is_pay,jdbcType=INTEGER},
+      </if>
+      <if test="pay_time != null">
+        #{pay_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.redPacket.HxUserRedPacket">
+    update hx_user_red_packet
+    <set>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="trans_num != null">
+        trans_num = #{trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="is_random != null">
+        is_random = #{is_random,jdbcType=INTEGER},
+      </if>
+      <if test="group_id != null">
+        group_id = #{group_id,jdbcType=BIGINT},
+      </if>
+      <if test="accept_user_id != null">
+        accept_user_id = #{accept_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="send_amount != null">
+        send_amount = #{send_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="packet_number != null">
+        packet_number = #{packet_number,jdbcType=INTEGER},
+      </if>
+      <if test="creat_time != null">
+        creat_time = #{creat_time,jdbcType=BIGINT},
+      </if>
+      <if test="linwan_time != null">
+        linwan_time = #{linwan_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_pay != null">
+        is_pay = #{is_pay,jdbcType=INTEGER},
+      </if>
+      <if test="pay_time != null">
+        pay_time = #{pay_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where red_packet_id = #{red_packet_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.redPacket.HxUserRedPacket">
+    update hx_user_red_packet
+    set user_id = #{user_id,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      trans_num = #{trans_num,jdbcType=VARCHAR},
+      is_random = #{is_random,jdbcType=INTEGER},
+      group_id = #{group_id,jdbcType=BIGINT},
+      accept_user_id = #{accept_user_id,jdbcType=BIGINT},
+      send_amount = #{send_amount,jdbcType=DECIMAL},
+      packet_number = #{packet_number,jdbcType=INTEGER},
+      creat_time = #{creat_time,jdbcType=BIGINT},
+      linwan_time = #{linwan_time,jdbcType=BIGINT},
+      is_pay = #{is_pay,jdbcType=INTEGER},
+      pay_time = #{pay_time,jdbcType=BIGINT}
+    where red_packet_id = #{red_packet_id,jdbcType=BIGINT}
+  </update>
+  
+  <!--  insertBackId  返回主键添加-->
+  <insert id="insertBackId" parameterType="com.hwt.domain.entity.user.redPacket.HxUserRedPacket" useGeneratedKeys="true" keyProperty="red_packet_id">
+    insert into hx_user_red_packet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="red_packet_id != null">
+        red_packet_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="trans_num != null">
+        trans_num,
+      </if>
+      <if test="is_random != null">
+        is_random,
+      </if>
+      <if test="group_id != null">
+        group_id,
+      </if>
+      <if test="accept_user_id != null">
+        accept_user_id,
+      </if>
+      <if test="send_amount != null">
+        send_amount,
+      </if>
+      <if test="packet_number != null">
+        packet_number,
+      </if>
+      <if test="creat_time != null">
+        creat_time,
+      </if>
+      <if test="linwan_time != null">
+        linwan_time,
+      </if>
+      <if test="is_pay != null">
+        is_pay,
+      </if>
+      <if test="pay_time != null">
+        pay_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="red_packet_id != null">
+        #{red_packet_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="trans_num != null">
+        #{trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="is_random != null">
+        #{is_random,jdbcType=INTEGER},
+      </if>
+      <if test="group_id != null">
+        #{group_id,jdbcType=BIGINT},
+      </if>
+      <if test="accept_user_id != null">
+        #{accept_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="send_amount != null">
+        #{send_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="packet_number != null">
+        #{packet_number,jdbcType=INTEGER},
+      </if>
+      <if test="creat_time != null">
+        #{creat_time,jdbcType=BIGINT},
+      </if>
+      <if test="linwan_time != null">
+        #{linwan_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_pay != null">
+        #{is_pay,jdbcType=INTEGER},
+      </if>
+      <if test="pay_time != null">
+        #{pay_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <!-- 一对多查询关联  -->
+     <resultMap type="com.hwt.domain.entity.user.redPacket.vo.HxUserRedPacketVo" id="userRedPacketVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+           <id column="red_packet_id" jdbcType="BIGINT" property="red_packet_id" />
+		    
+		    <result column="is_random" jdbcType="INTEGER" property="is_random" />
+		    <result column="title" jdbcType="VARCHAR" property="title" />
+		    <result column="content" jdbcType="VARCHAR" property="content" />
+		  <!--   <result column="group_id" jdbcType="BIGINT" property="group_id" />
+		    <result column="accept_user_id" jdbcType="BIGINT" property="accept_user_id" /> -->
+		    <result column="send_amount" jdbcType="DECIMAL" property="send_amount" />
+		    <result column="packet_number" jdbcType="INTEGER" property="packet_number" />
+		    <result column="creat_time" jdbcType="BIGINT" property="creat_time" />
+		    <result column="linwan_time" jdbcType="BIGINT" property="linwan_time" />
+		    
+         <!-- 用collection标签 ,也是实体类属性要对应数据库字段-->
+         <collection property="userRedPacket" ofType="baseUserVo" column="user_id"
+         	select="query_user">
+         </collection>
+             
+         <collection property="userRobRedPacketVos" ofType="userRobRedPacketVo" column="red_packet_id"
+         	select="query_userRobRedPacketVo">
+         </collection>
+             
+     </resultMap>
+     
+     
+     <resultMap type="com.hwt.domain.entity.user.BaseUserVo" id="baseUserVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+         <id property="user_id" column="user_id"/>
+           
+     </resultMap>
+     
+      <resultMap type="com.hwt.domain.entity.user.redPacket.vo.UserRobRedPacketVo" id="userRobRedPacketVo">
+
+	    <id column="red_packet_id" jdbcType="BIGINT" property="red_packet_id" />
+	    
+	   <!--  <result column="accept_amount" jdbcType="DECIMAL" property="accept_amount" />
+	    <result column="creat_time" jdbcType="BIGINT" property="creat_time" /> -->
+       
+        <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+          <collection property="userRobRedPacket" ofType="baseUserVo" column="user_id"
+         	select="query_user">
+         </collection>
+         
+     </resultMap>
+     
+      <!-- 查询红包详情 -->
+     <select id="queryInfoById"  resultMap="userRedPacketVo">
+         select 
+         	<include refid="Base_Column_List" />
+          from hx_user_red_packet where red_packet_id = #{red_packet_id}
+     </select>
+     
+     <!-- 通过id查询用户 -->
+     <select id="query_user" parameterType="java.lang.Long" resultMap="baseUserVo">
+         select user_id, account as user_account , user_icon,nickname ,im_id from hx_user_info where user_id = #{user_id}
+     </select>
+     
+     <!-- 通过id查询用户抢红包情况 -->
+     <select id="query_userRobRedPacketVo" parameterType="java.lang.Long" resultMap="userRobRedPacketVo">
+         select  user_id, red_packet_id, accept_amount, creat_time from hx_user_rob_red_packet where red_packet_id = #{red_packet_id}
+     </select>
+     
+  
+  
+</mapper>

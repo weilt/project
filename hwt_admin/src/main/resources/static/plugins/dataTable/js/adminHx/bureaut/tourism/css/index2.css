@@ -1,0 +1,78 @@
+*{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ul li{
+  list-style: none;
+}
+.audio-box{
+  width: 100%;
+  height: auto;
+  padding: 50px;
+}
+.audio-box audio{
+  width: 100%;
+}
+.audio-classBox{
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.audio-radioBox ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+.audio-radioBox li{
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+.audio-txt{
+  min-width: 62px;
+}
+.audio-inputName{
+  margin-top: 25px;
+}
+.audio-imgBox{
+  margin-top: 25px;
+}
+.audio-uploadBox{
+  width: 100%;
+  height: auto;
+  margin-top: 15px;
+  margin-left: 65px;
+}
+.audio-uploadBox img{
+  width: 80px;
+  height: 80px;
+}
+.zzz-box{
+  width: 300px;
+  height: auto;
+  /*margin-top: 50px;*/
+}
+.zzz-box div{
+  width: 90px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: .3s;
+}
+.zzz-zzzz1{
+  float: left;
+  background-color: rgb(9,102,198) !important;
+}
+.zzz-zzzz2{
+  float: right;
+  background-color: rgb(134,142,150) !important;
+}
+.zzz-zzzz2:hover{
+  background-color: rgb(114,123,132);
+}

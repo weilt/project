@@ -1,0 +1,1207 @@
+
+  <head>
+      <link href="/model/lib/highlightjs/github.css" rel="stylesheet">
+      <link href="/model/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+      <link href="/model/lib/select2/css/select2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="/model/css/bracket.css">
+      <link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+     <!--  <link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/release.css"> -->
+      
+      <link href="/plugins/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">  
+      <link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/laydate.css">
+      <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=4784f9fde42266b8300aa2fe374a83fb&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+      
+      <style type="text/css">
+			.zry_box{
+				display: table;
+				width: 100%;
+				height: 40px;
+				padding: 5px;
+				background-color: #fff;
+				margin-bottom: 15px;
+			}
+			.zry_box div{
+				width: auto;
+				height: 100%;
+				border: 1px solid #ccc;
+				text-align: center;
+				padding: 0 15px;
+				line-height: 40px;
+				border-radius: 5px;
+				float: left;
+				margin-left: 20px;
+				box-sizing:borbox;
+			}
+			.zry_box div:nth-child(1){
+				margin-left: 0px;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			.bigbox{
+				display: table;
+				width: 625px;
+				height: auto;
+				box-sizing: border-box;
+				border: 1px solid #000;
+				margin: 100px auto;
+				padding: 10px 0 10px 5px;
+			}
+			.bigbox>div{
+				
+				width: 200px;
+				height: 200px;
+				float: left;
+				margin: 0 5px 5px 0;
+				position: relative;
+			}
+			.line{
+				width: 100%;
+				height:20px;
+				position: absolute;
+				bottom: -3px;
+			}
+			.line p{
+				width: 50%;
+				float: left;
+				text-align: center;
+				cursor: pointer;
+				transition: .3s;
+			}
+			.line p:hover{
+				color: #ccc;
+			}
+			.bigbox .addimgbtn{
+				background-color: #ccc;
+			}
+			.addimgbtn h1{
+				text-align: center;
+				margin-top: 80px;
+				cursor: pointer;
+			}
+			.imgbox{
+				width: 100%;
+				height: 180px;
+				background-color: #A52A2A;
+			}
+			
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.zry-h_box{
+				width: 175px;
+				height: auto;
+				position: relative;
+				margin: 20px auto;
+			}
+			.zry-h_box input{
+				width: 100%;
+			}
+			.zry-box_ul{
+				display: none;
+				width: 100%;
+				list-style: none;
+				position: absolute;
+				background-color: #FFFFFF;
+				z-index: 55;
+			}
+			.zry-box_ul li{
+				width: 100%;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				border-bottom: 1px solid #333333;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				font-size: 14px;
+				cursor: pointer;
+				transition: .3s;
+				padding: 0 10px;
+				position: relative;
+			}
+			.zry-box_ul li:hover{
+				color: #999;
+			}
+			.select-date{
+				position: initial;
+				width: 100%;
+				height: auto;
+				box-sizing: content-box;
+			}
+			.zry-h_moneyBtn{
+				display: inline-block;
+				width: 50px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				border: 1px solid #333333;
+				cursor: pointer;
+				margin-left: 10px;
+				transition: .3s;
+			}
+			.zry-h_moneyBtn:hover{
+				background-color: #999;
+			}
+			.week-list li{
+				width: 50px;
+				margin: 0;
+			}
+			.zry-tabel_line , .zry-tabel_ul{
+				height: 50px;
+			}
+			.zry-tabel_li{
+				width: 50px;
+				height: 50px;
+				margin: 0;
+				line-height: 15px;
+			}
+			.zry-adultMoney{
+				font-size: 12px;
+				color: #DC143C;
+				margin-bottom: 0;
+			}
+			.zry-childrenMoney{
+				font-size: 12px;
+				color: 	#006400;
+			}
+			.zry-showDataBox{
+				width: 100%;
+				height: auto;
+				position: relative;
+			}
+			.zry-showDataBox div{
+			    width: 100%;
+			    height: 30px;
+			    text-align: left;
+			    line-height: 30px;
+			    border-bottom: 1px solid #333333;
+			    text-overflow: ellipsis;
+			    overflow: hidden;
+			    white-space: nowrap;
+			    font-size: 14px;
+			    /*cursor: pointer;*/
+			    transition: .3s;
+			    padding: 0 10px;
+			    position: relative;
+			}
+			.zry-showDataBox i{
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 1px solid #000000;
+				text-align: center;
+				line-height: 20px;
+				font-size: 12px;
+				position: absolute;
+				right: 12px;
+				top: 5px;
+				color: #000;
+				z-index: 10;
+				font-style: normal;
+				cursor: pointer;
+			}
+			.zry-childrenMoney , .zry-adultMoney{
+				margin-bottom: 0 !important;
+			}
+		</style>
+  </head>
+
+  <body>
+<!--请求路径-->
+  <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="/main">首页</a>
+          <a class="breadcrumb-item" href="javascrip:void(0);" onclick="reCommit()">线路管理</a>
+      </nav>
+  </div>
+
+<!--页面标题-->
+<!-- <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">景点管理</h4>
+    <p class="mg-b-0">景点管理</p>
+</div> -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+    
+    	<div class="zry_box">
+			
+			<div>已上线（<font id="online" color="red"></font>）</div>
+			<div>已下线（<font id="downline" color="red"></font>）</div>
+		</div>
+        <div class="table-wrapper">
+            <!--查询条件-->
+            <div class="row">
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                线路名称
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="线路名称" name="paramMap_line_name" id="paramMap_line_name">
+
+                    </div><!-- input-group -->
+                </div>
+                
+             
+              
+                
+               
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 pd-l-0">
+                <br />
+                    <div class="input-group">
+                        <button class="btn btn-primary mg-l-10" onclick="sreachCommit()"><i class="fa fa-search mg-r-10"></i> 搜索</button>
+                        <button class="btn btn-primary mg-l-10" onclick="add()"><i class="fa fa-plus mg-r-10"></i> 添加</button>
+                    </div><!-- input-group -->
+                </div>
+            </div>
+
+            <!--数据列表-->
+            <div id="dynamic-table_wrapper" class="dataTables_wrapper no-footer">
+                <table id="dynamic-table" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="dynamic-table_info" >
+                    <thead>
+                    <tr role="row">
+                        <th class="wd-5p parsley-checkbox " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;">
+
+                            <label class="ckbox " >
+                                <input type="checkbox" name="browser[]"><span></span>
+                            </label>
+
+                            <!--<label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label>-->
+                        </th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >编号</th>
+                        <th class="wd-20p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 180px;" >线路名称</th>
+                      <!--   <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >当前日期价格</th> -->
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >创建时间</th>
+                        <th class="wd-10p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 78px;" >出售次数</th>
+                        <th class="wd-10p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 78px;" >分类</th>
+                        <th class="wd-10p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 78px;" >状态</th>
+                        <th class="wd-25p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 231px;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+  <!--<div class="table-wrapper">-->
+      <!--<table id="dynamic-table" class="table display responsive nowrap">-->
+          <!--<thead>-->
+          <!--<tr>-->
+              <!--<th class="wd-5p"><label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label></th>-->
+              <!--<th class="wd-10p">ID</th>-->
+              <!--<th class="wd-15p">名称</th>-->
+              <!--<th class="wd-20p">性别</th>-->
+              <!--<th class="wd-15p">时间</th>-->
+              <!--<th class="wd-10p">TOKEN</th>-->
+              <!--<th class="wd-25p">操作</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+
+          <!--</tbody>-->
+      <!--</table>-->
+  <!--</div>&lt;!&ndash; table-wrapper &ndash;&gt;-->
+  
+
+
+
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
+          <div>Attentively and carefully made by ThemePixels.</div>
+        </div>
+        <div class="footer-right d-flex align-items-center">
+          <span class="tx-uppercase mg-r-10">Share:</span>
+          <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
+          <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
+        </div>
+      </footer>
+      <script src="/model/lib/jquery/jquery.js"></script>
+      <script src="/plugins/dataTable/js/bureaut/line/ro.dataTable.js"></script>
+      <script src="/plugins/dataTable/js/bureaut/line/demo.dataTable.js"></script>
+      <script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+      
+      <script type="text/javascript" src="/plugins/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/plugins/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/kindeditor-base.js"></script>
+      <script src="/public/base.js"></script>
+      <script src="/public/kkk.js"></script>
+      <!-- <script src="/plugins/dataTable/js/bureaut/line/release.js"></script> -->
+       <script src="/plugins/dataTable/js/bureaut/tourism/js/laydate.js" type="text/javascript" charset="utf-8"></script>
+      
+      
+
+<!--<script src="/model/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>-->
+<!--<script src="/model/lib/d3/d3.js"></script>-->
+
+    <script>
+    
+	
+	
+    	function name() {
+			
+		}
+    	
+    	//添加
+    	function add(){
+    		$.ajax({
+    			url : "/bureau/line/qureyAttribute",
+     	        type : "POST",
+     	      	data : {},
+     	      	success : function (res) {
+     	      		res = strToJson(res);
+     	      		
+     	      			var imageHtml = "";
+     	          		imageHtml +='<div id="bigbox" class="bigbox">';
+     	          		imageHtml+='<div  class="addimgbtn picFileUpload"><h1>添加</h1></div>';
+     	          		imageHtml+='</div>';
+     	      			var line_types = res.data.line_types;
+     	      			var type_html = '';
+						for (var  i= 0; i < line_types.length; i++) {
+		            		
+							type_html+='<option value="'+line_types[i].attribute_id+'">'+line_types[i].attribute_name+'</option>'
+						}
+						
+     	      			var line_services = res.data.line_services;
+     	      			var service_html = '';
+						for (var  i= 0; i < line_services.length; i++) {
+		            		
+							service_html += '<label class="ckbox"><input type="checkbox" name="line_service"  value="'+line_services[i].attribute_id +'"/><span>'+line_services[i].attribute_name+'</span></label>';
+							
+						}
+						var _html = '';
+						_html += '<form id = "form">                                                                                                                                                                                                           '
+						+'	  <div class="br-pagebody">                                                                                                                                                                                                '
+						+'																																																			                   '
+						+'		<div class="br-section-wrapper">                                                                                                                                                                                       '
+						+'			<!--内容-->                                                                                                                                                                                                        '
+						+'			 <div class="row">                                                                                                                                                                                                 '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>线路名称:</p>                                                                   '       
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+'					<input class="form-control wd-50%" id="line_name" name="line_name"  type="text" value="">                                                                                                                  '
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'			                                                                                                                                                                                                                   '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>行程天数:</p>                                                                   '
+						+'				<div class="col-lg mg-l-10"> '
+						+'					<input class="form-control wd-250" id="day_num" name="day_num"  type="text" value=""> '    
+						+'				</div>                                                                                                                                                                                             '
+						+'				<p  style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>是否下架:</p>                                                                  '  
+						+'				<div class="col-lg-0 mg-t-10 mg-l-20 wd-60">                                                                                                                                                                   '
+						+'					<label class="rdiobox ">                                                                                                                                                                                   '
+						+'						<input type="radio" name="is_hide" value="0" checked><span>是</span>                                                                                                                                   '
+						+'					</label>                                                                                                                                                                                                   '
+						+'				</div>                                                                                                                                                                                                         '
+						+'				<div class="col-lg-1 mg-t-10 m-l-0">                                                                                                                                                                           '
+						+'					<label class="rdiobox">                                                                                                                                                                                    '
+						+'						<input type="radio" name="is_hide" value="1"><span>否</span>                                                                                                                                           '
+						+'					</label>                                                                                                                                                                                                   '
+						+'				</div>                                                                                                                                                                                                         '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>线路分类:</p>                                                                   '       
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+'					<select class="form-control form-control wd-250 select2 " id="line_type" name="line_type" data-placeholder="sex" tabindex="-1" aria-hidden="true">                                                                             '
+						+type_html
+						+'					</select>                                                                                                                                                                                                  '
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			                                                                                                                                                                                                                   '
+						+'			 <div class="row mg-t-20">                                                                                                                                                                                         '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>服务保障:</p>                                                                   '           
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+service_html
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<input class="form-control wd-50%" id="line_services" name="line_services"  type="hidden" value="">                                                                                                                '
+						+'			                                                                                                                                                                                                                   '
+						
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>关联景点:</p>                                                                   '           
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+'<div class="zry-h_box">                  '
+						+'	<input  class="form-control wd-50%" type="text" id="monitorInput" />'
+						+'	<ul class="zry-box_ul"></ul>           '
+						+'	<div class="zry-showDataBox">          '
+						+'	                                       '
+						+'	</div>                                 '
+						+'</div>                                   '
+						
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<input class="form-control wd-50%" id="scenics" name="scenics"  type="hidden" value="">                                                                                                                            '
+						+'			<input class="form-control wd-50%" id="scenics_info" name="scenics_info"  type="hidden" value="">                                                                                                                            '
+						+'		   <div class="row mg-t-20">                                                                                                                                                                                           '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>上传图片:</p>                                                                   '           
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+imageHtml
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<input class="form-control wd-50%" id="line_images" name="line_images"  type="hidden" value="">                                                                                                                    '
+						+'			<input class="form-control wd-50%" id="line_cover" name="line_cover"  type="hidden" value="">                                                                                                                    '
+						+'			<input class="form-control wd-50%" id="scenics_info" name="scenics_info"  type="hidden" value="">                                                                                                                    '
+						+'		                                                                                                                                                                                                                       '
+						+'			                                                                                                                                                                                                                   '
+						
+						+'		   <div class="row mg-t-20">                                                                                                                                                                                           '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>价格:</p>                                                                   '           
+						+'				<div class="col-lg mg-l-10">             '
+						+'<div style="width: 350px; margin: 0 auto;">                                                               '
+						+'	<div class="select-date" style="display: block;">                                                                               '
+						+'		<div class="select-date-header">                                                                    '
+						+'			<ul class="heade-ul">                                                                           '
+						+'				<li class="header-item header-item-one">                                                    '
+						+'					<select name="" id="yearList"></select>                                                 '
+						+'				</li>                                                                                       '
+						+'				<li class="header-item header-item-two" onselectstart="return false">                       '
+						+'					<select name="" id="monthList"></select>                                                '
+						+'				</li>                                                                                       '
+						+'				<li class="header-item header-item-three" onselectstart="return false">                     '
+						+'					<span class="reback">回到今天</span>                                                    '
+						+'				</li>                                                                                       '
+						+'			</ul>                                                                                           '
+						+'		</div>                                                                                              '
+						+'		<div class="select-date-body">                                                                      '
+						+'			<ul class="week-list">                                                                          '
+						+'				<li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>               '
+						+'			</ul>                                                                                           '
+						+'			<ul class="day-tabel"></ul>                                                                     '
+						+'		</div>                                                                                              '
+						+'	</div>                                                                                                  '
+						+'	                                                                                                        '
+						+'	<p>成人：<input type="number" id="money1">元<span class="zry-h_moneyBtn" id="moneyBtn1">确定</span></p> '
+						+'	<p>儿童：<input type="number" id="money2">元<span class="zry-h_moneyBtn" id="moneyBtn2">确定</span></p> '
+						+'	<p style="display: none;">最大值：<input type="text" type="hidden" name="max_price" id="maxMoney"></p>                                                        '
+						+'	<p style="display: none;">最小值：<input type="text" type="hidden" name="min_price" id="smallMoney"></p>                                                      '
+						+'</div>                                                                                                    '
+						+'				</div><!-- col -->   '
+						+'			</div>    '
+						+'			<input class="form-control wd-50%" id="line_price" name="line_price"  type="hidden" value="">                                                                                                                      '
+						+'			                                                                                                                                                                                                                   '
+						+'			                                                                                                                                                                                                                   '
+						+'			                                                                                                                                                                                                                   '
+						+'			                                                                                                                                                                                                                   '
+						+'		   <div class="row mg-t-20">                                                                                                                                                                                           '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>图文详情:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_info" style="width:100%;height:400%;visibility:hidden;" name="line_info"  type="text" value=""> </textarea>                                             '                                
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>交通信息:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_traffic" style="width:100%;height:400%;visibility:hidden;" name="line_traffic"  type="text" value=""> </textarea>                                       '                                      
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>酒店住宿:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_hotel" style="width:100%;height:400%;visibility:hidden;" name="line_hotel"  type="text" value=""> </textarea>                                           '                                  
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>行程介绍:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_trip" style="width:100%;height:400%;visibility:hidden;" name="line_trip"  type="text" value=""> </textarea>                                             '                                
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>餐饮:</p>                                                                       '   
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_restaurant" style="width:100%;height:400%;visibility:hidden;" name="line_restaurant"  type="text" value=""> </textarea>                                 '                                            
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>费用包含:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_cost_info" style="width:100%;height:400%;visibility:hidden;" name="line_cost_info"  type="text" value=""> </textarea>                                   '                                          
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>费用不含:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_notcost_info" style="width:100%;height:400%;visibility:hidden;" name="line_notcost_info"  type="text" value=""> </textarea>                             '                                                
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>自费项目:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_self_expense" style="width:100%;height:400%;visibility:hidden;" name="line_self_expense"  type="text" value=""> </textarea>                             '                                                
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>预定须知:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_predetermined_instructions" style="width:100%;height:400%;visibility:hidden;" name="line_predetermined_instructions"  type="text" value=""> </textarea> '                                                                            
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>保险说明:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_insurance_description" style="width:100%;height:400%;visibility:hidden;" name="line_insurance_description"  type="text" value=""> </textarea>           '                                                                  
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>取消说明:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_cancel_description" style="width:100%;height:400%;visibility:hidden;" name="line_cancel_description"  type="text" value=""> </textarea>                 '                                                            
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>安全提醒:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_security_reminding" style="width:100%;height:400%;visibility:hidden;" name="line_security_reminding"  type="text" value=""> </textarea>                 '                                                            
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                                                  '
+						+'				<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="insert_line(\'bureau/line/insert\',\'form\')">确定</div>                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'																																																			                   '
+						+'		</div><!-- br-section-wrapper -->                                                                                                                                                                                      '
+						+'	  </div><!-- br-pagebody -->                                                                                                                                                                                               '
+						+'	   </form>                                                                                                                                                                                                                 '															
+						 fromEject(_html,"线路添加",'80%','80%');
+						createEditor_init();
+						Initialization(null,{});
+						console.log(line_price)
+						
+			    	   
+						 
+     	      		
+     	      		
+     	      	}
+    		})
+    	}
+    	
+    	//添加————提交
+    	function insert_line(url,form){
+    		image_handle(form);
+    		service_handle(form);
+    		form_conmit();
+    		scenics_info();
+    		//zry()
+    		//$("maxMoney").val(max_price)
+    		//$("smallMoney").val(min_price)
+
+			if (validation(["line_name","day_num","line_images"],[],[])){
+    			
+				$.ajax({
+			        url : url,
+			        type : "POST",
+			        data : $("#"+form).serialize(),
+			        success : function (res) {
+			        	res = strToJson(res);
+			            
+			            	layer.alert(res.msg,{icon: 6},function(){
+			            		layer.closeAll();
+			            		reloadTable($("#dynamic-table"))
+			            		moneyData = null;
+			        			getData = null;
+			        			line_price = {};
+			            	});
+			            
+			        }
+			    })
+    			
+    		}else{
+    			return
+    		}
+			
+    	}
+    	
+    	//关联景点处理
+    	function scenics_info(){
+    		console.log("5555555","5555555555");
+    		var dates = $(".zry-showDataBox > div");
+    		if (dates.length==0){
+    			$("#scenics_info").val("");
+    			$("#scenics").val("");
+    			return
+    		}
+    		var honorArray = new Array();
+    		var spotIds = '';
+    		for (var i = 0; i < dates.length; i++) {
+    			var map = {};
+				var date = dates[i]
+				map["spotId"] = $(date).attr("data-id")
+				spotIds += ','+ $(date).attr("data-id")+',';
+				map["spotName"] = $(date).attr("data-name")
+				honorArray.push(map);
+			}
+    		
+    		if (honorArray.length!=0){
+    			$("#scenics_info").val(JSON.stringify(honorArray));
+    			$("#scenics").val(spotIds);
+    		} else {
+    			$("#scenics_info").val("");
+    			$("#scenics").val("");
+    		}
+    		
+    		
+    		
+    		
+    	}
+    	
+    	function zry(){
+    		var year = $('#yearList').val();
+    		var month = $('#monthList').val();
+    		var line_price = {}
+    		var childMoney = []
+    		var childDate = []
+    		var adultMoney = []
+    		var adultDate = []
+    		for(var i=0; i<$('.zry-adultMoney').length; i++){
+    			adultDate.push($('.zry-adultMoney').eq(i).parent().text())
+    		}
+    		console.log(adultDate)
+    		
+    	}
+    	
+    	//修改
+    	function edit(id,url,dec,type){
+    		$.ajax({
+    			url : url,
+     	        type : "POST",
+     	      	data : {"line_id":id,"type":type},
+     	      	success : function (res) {
+     	      		res = strToJson(res);
+     	      		
+     	      			var hwTravelLine = res.data.hwTravelLine;
+     	      			var line_types = res.data.line_types;
+     	      			var line_services = res.data.line_services;
+     	      			var line_id = hwTravelLine.line_id;
+     	      			var line_name = hwTravelLine.line_name==null?"":hwTravelLine.line_name;
+     	      			var day_num = hwTravelLine.day_num==null?"":hwTravelLine.day_num;
+     	      			 
+     	      			
+     	      			var is_hide = hwTravelLine.is_hide
+     	      			var is_hide_html = '';
+     	      				is_hide_html += '				<div class="col-lg-0 mg-t-10 mg-l-20 wd-60">     '
+						+'					<label class="rdiobox ">                                                                                                                                                                                   '
+						+'						<input type="radio" name="is_hide" value="0" '
+						if (is_hide == 0){
+							is_hide_html+='checked'
+						}
+					
+						
+						is_hide_html+= '><span>否</span>                                                                                                                                   '
+						+'					</label>                                                                                                                                                                                                   '
+						+'				</div>                                                                                                                                                                                                         '
+						+'				<div class="col-lg-1 mg-t-10 m-l-0">                                                                                                                                                                           '
+						+'					<label class="rdiobox">                                                                                                                                                                                    '
+						+'						<input type="radio" name="is_hide" value="1" '
+						if (is_hide == 1){
+							is_hide_html+='checked'
+						}
+						is_hide_html+='><span>是</span>                                                                                                                                           '
+						+'					</label>                                                                                                                                                                                                   '
+						+'				</div>                                            '                         
+     	      			
+						
+						//类型
+     	      			var line_type = hwTravelLine.line_type;
+     	      			var type_html = '';
+						for (var  i= 0; i < line_types.length; i++) {
+		            		
+							type_html+='<option value="'+line_types[i].attribute_id+'"'
+							if (line_type == line_types[i].attribute_id){
+								type_html += 'seleced = "seleced"';
+							}
+							type_html+= '>'+line_types[i].attribute_name+'</option>'
+						}
+     	      			//服务
+     	      			var line_service = hwTravelLine.line_service==null?"":hwTravelLine.line_service;
+     	      			line_service = line_service == undefined?"":line_service;
+     	      			
+     	      			if (line_service!=""){
+     	      				line_service = line_service.split(",");
+     	      			}
+     	      			
+     	      			var service_html = '';
+						for (var  i= 0; i < line_services.length; i++) {
+						
+							service_html += '<label class="ckbox"><input type="checkbox" name="line_service" ';
+							
+							for(var  j= 0; j < line_service.length; j++) {
+								
+								if (line_service[j] == line_services[i].attribute_id){
+									
+									service_html += ' checked="checked" '
+								}
+							
+							}
+							service_html +=' value="'+line_services[i].attribute_id +'"/><span>'+line_services[i].attribute_name+'</span></label>';
+							
+						}
+     	      			
+     	      			var line_images = hwTravelLine.line_images==null?"":hwTravelLine.line_images;
+       	        		
+     	      			
+     	      			var line_info = hwTravelLine.line_info==null?"":hwTravelLine.line_info;
+     	      			
+     	      			//景点关联
+     	      			var scenics = hwTravelLine.scenics==null?"":hwTravelLine.scenics;
+     	      			
+     	      			var line_traffic = hwTravelLine.line_traffic==null?"":hwTravelLine.line_traffic;
+     	      			var line_hotel = hwTravelLine.line_hotel==null?"":hwTravelLine.line_hotel;
+     	      			var line_trip = hwTravelLine.line_trip==null?"":hwTravelLine.line_trip;
+     	      			var line_restaurant = hwTravelLine.line_restaurant==null?"":hwTravelLine.line_restaurant;
+     	      			var line_cost_info = hwTravelLine.line_cost_info==null?"":hwTravelLine.line_cost_info;
+     	      			var line_notcost_info = hwTravelLine.line_notcost_info==null?"":hwTravelLine.line_notcost_info;
+     	      			var line_self_expense = hwTravelLine.line_self_expense==null?"":hwTravelLine.line_self_expense;
+     	      			var line_predetermined_instructions = hwTravelLine.line_predetermined_instructions==null?"":hwTravelLine.line_predetermined_instructions;
+     	      			var line_insurance_description = hwTravelLine.line_insurance_description==null?"":hwTravelLine.line_insurance_description;
+     	      			var line_cancel_description = hwTravelLine.line_cancel_description==null?"":hwTravelLine.line_cancel_description;
+     	      			var line_security_reminding = hwTravelLine.line_security_reminding==null?"":hwTravelLine.line_security_reminding;
+     	      			
+     	      			var scenics = hwTravelLine.scenics==null?"":hwTravelLine.scenics;
+     	      			var scenics_info = hwTravelLine.scenics_info==null?"":hwTravelLine.scenics_info;
+     	      			scenics_info = ","==scenics_info?'':scenics_info;
+     	      			var _scenics_info = '';
+     	      			if (scenics_info!=''){
+     	      				console.log(scenics_info.substring(0, scenics_info.length-1));
+     	      				//scenics_info = scenics_info.substring(0, scenics_info.length-1)
+     	      				if (scenics_info!=""){
+     	      					scenics_info = strToJson(scenics_info)
+     	      				}
+     	      				
+     	      				for (var i = 0; i < scenics_info.length; i++) {
+     	      					var spotId = scenics_info[i].spotId;
+     	      					var spotName = scenics_info[i].spotName;
+     	      					
+     	      					_scenics_info +='<div data-name="'+spotName+'" data-id="'+spotId+'"><div>'+spotName+'</div><i>X</i></div>';
+							}
+     	      			
+     	      			}
+     	      			
+     	      			
+     	      			
+     	      			var max_price = hwTravelLine.max_price==null?"":hwTravelLine.max_price;
+     	      			var max_price = max_price;
+
+     	      			var min_price = hwTravelLine.max_price==null?"":hwTravelLine.min_price;
+     	      			var min_price = min_price;
+     	      			
+     	      			var Line_price = hwTravelLine.line_price==null?"":hwTravelLine.line_price;
+     	      			
+     	      			var imageHtml = "";
+     	      			line_images = line_images.split(",");
+       	        		var imageHtml = "";
+       	        		imageHtml +='<div id="bigbox" class="bigbox">'
+       	        		
+       	        		for(var i = 0; i<line_images.length; i++){
+       	        			var imageUrl = line_images[i];
+       	        			
+       	        			if ($.trim(imageUrl)!=""){
+       	        				
+	       	        			imageHtml +='<div ><a href="javascrip:void(0);" onclick="catImage(\''+imageUrl+'\')"><img class="imgbox" src="'+imageUrl+'" /></a>'
+	       	        			+'<div class="line"><p class="setTop" onclick="addlable(this)">置顶</p><p class="del" onclick="dellabe(this)">删除</p></div>'
+	       	        			+'</div>'
+       	        			}
+       	        		}
+       	        		imageHtml+='<div  class="addimgbtn picFileUpload"><h1>添加</h1></div>';
+       	        		imageHtml+='</div>';
+     	      			
+						
+     	      			
+						var _html = '';
+						_html += '<form id = "form">                                                                                                                                                                                                           '
+						+'	  <div class="br-pagebody">                                                                                                                                                                                                '
+						+'																																																			                   '
+						+'		<div class="br-section-wrapper">                                                                                                                                                                                       '
+						+'			<!--内容-->                                                                                                                                                                                                        '
+						+'			 <div class="row">                                                                                                                                                                                                 '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>线路名称:</p>                                                                   '       
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+'					<input class="form-control wd-50%" id="line_name" name="line_name"  type="text" value="'+line_name+'">                                                                                                                  '
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'			                                                                                                                                                                                                                   '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>行程天数:</p>                                                                   '
+						+'				<div class="col-lg mg-l-10"> '
+						+'					<input class="form-control wd-250" id="day_num" name="day_num"  type="text" value="'+day_num+'"> '    
+						+'				</div>                                                                                                                                                                                             '
+						+'				<p  style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>是否下架:</p>                                                                  '  
+						+is_hide_html
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>线路分类:</p>                                                                   '       
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+'					<select class="form-control form-control wd-250 select2 " id="line_type" name="line_type" data-placeholder="sex" tabindex="-1" aria-hidden="true">                                                                             '
+						+type_html
+						+'					</select>                                                                                                                                                                                                  '
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			                                                                                                                                                                                                                   '
+						+'			 <div class="row mg-t-20">                                                                                                                                                                                         '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>服务保障:</p>                                                                   '           
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+service_html
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<input class="form-control wd-50%" id="line_services" name="line_services"  type="hidden" value="">                                                                                                                '
+						+'			                                                                                                                                                                                                                   '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>关联景点:</p>                                                                   '           
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+'<div class="zry-h_box">                  '
+						+'	<input  class="form-control wd-50%" type="text" id="monitorInput" />'
+						+'	<ul class="zry-box_ul"></ul>           '
+						+'	<div class="zry-showDataBox">          '
+						+_scenics_info
+						+'	</div>                                 '
+						+'</div>                                   '
+						
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<input class="form-control wd-50%" id="scenics" name="scenics"  type="hidden" value="'+scenics+'">                                                                                                                            '
+						+'			<input class="form-control wd-50%" id="scenics_info" name="scenics_info"  type="hidden" value="'+scenics_info+'">       '	
+						
+						+'		   <div class="row mg-t-20">                                                                                                                                                                                           '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>上传图片:</p>                                                                   '           
+						+'				<div class="col-lg mg-l-10">                                                                                                                                                                                   '
+						+imageHtml
+						+'				</div><!-- col -->                                                                                                                                                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<input class="form-control wd-50%" id="line_images" name="line_images"  type="hidden" value="">                                                                                                                    '
+						+'			<input class="form-control wd-50%" id="line_cover" name="line_cover"  type="hidden" value="">                                                                                                                    '
+						+'			<input class="form-control wd-50%" id="line_id" name="line_id"  type="hidden" value="'+line_id+'">                                                                                                                    '
+						+'			<input class="form-control wd-50%" id="type" name="type"  type="hidden" value="2">                                                                                                                    '
+						+'		                                                                                                                                                                                                                       '
+						+'			                                                                                                                                                                                                                   '
+						+'			                                                                                                                                                                                                                   '
+						+'			                                                                                                                                                                                                                   '
+						+'			                                                                                                                                                                                                                   '
+						+'			                                                                                                                                                                                                                   '
+						
+						+'		   <div class="row mg-t-20">                                                                                                                                                                                           '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>价格:</p>                                                                   '           
+						+'				<div class="col-lg mg-l-10">             '
+						+'<div style="width: 350px; margin: 0 auto;">                                                               '
+						+'	<div class="select-date" style="display: block;">                                                                               '
+						+'		<div class="select-date-header">                                                                    '
+						+'			<ul class="heade-ul">                                                                           '
+						+'				<li class="header-item header-item-one">                                                    '
+						+'					<select name="" id="yearList"></select>                                                 '
+						+'				</li>                                                                                       '
+						+'				<li class="header-item header-item-two" onselectstart="return false">                       '
+						+'					<select name="" id="monthList"></select>                                                '
+						+'				</li>                                                                                       '
+						+'				<li class="header-item header-item-three" onselectstart="return false">                     '
+						+'					<span class="reback">回到今天</span>                                                    '
+						+'				</li>                                                                                       '
+						+'			</ul>                                                                                           '
+						+'		</div>                                                                                              '
+						+'		<div class="select-date-body">                                                                      '
+						+'			<ul class="week-list">                                                                          '
+						+'				<li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>               '
+						+'			</ul>                                                                                           '
+						+'			<ul class="day-tabel"></ul>                                                                     '
+						+'		</div>                                                                                              '
+						+'	</div>                                                                                                  '
+						+'	                                                                                                        '
+						+'	<p>成人：<input type="number" id="money1">元<span class="zry-h_moneyBtn" id="moneyBtn1">确定</span></p> '
+						+'	<p>儿童：<input type="number" id="money2">元<span class="zry-h_moneyBtn" id="moneyBtn2">确定</span></p> '
+						+'	<p style="display: none;">最大值：<input type="text" type="hidden" name="max_price" id="maxMoney" value="'+max_price+'"></p>                                                        '
+						+'	<p style="display: none;">最小值：<input type="text" type="hidden" name="min_price" id="smallMoney" value="'+min_price+'"></p>                                                      '
+						+'</div>                                                                                                    '
+						+'				</div><!-- col -->   '
+						+'			</div>    '
+						+'			<input class="form-control wd-50%" id="line_price" name="line_price"  type="hidden" value ="'+Line_price+'">  '
+						+'		   <div class="row mg-t-20">                                                                                                                                                                                           '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>图文详情:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_info" style="width:100%;height:400%;visibility:hidden;" name="line_info" >'+line_info+'</textarea>                                             '                                
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>交通信息:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_traffic" style="width:100%;height:400%;visibility:hidden;" name="line_traffic"  >'+line_traffic+' </textarea>                                       '                                      
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>酒店住宿:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_hotel" style="width:100%;height:400%;visibility:hidden;" name="line_hotel"  >'+line_hotel+'</textarea>                                           '                                  
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>行程介绍:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_trip" style="width:100%;height:400%;visibility:hidden;" name="line_trip"  >'+line_trip+'</textarea>                                             '                                
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>餐饮:</p>                                                                       '   
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_restaurant" style="width:100%;height:400%;visibility:hidden;" name="line_restaurant"  >'+line_restaurant+'</textarea>                                 '                                            
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>费用包含:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_cost_info" style="width:100%;height:400%;visibility:hidden;" name="line_cost_info"  >'+line_cost_info+'</textarea>                                   '                                          
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>费用不含:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_notcost_info" style="width:100%;height:400%;visibility:hidden;" name="line_notcost_info"  >'+line_notcost_info+'</textarea>                             '                                                
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>自费项目:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_self_expense" style="width:100%;height:400%;visibility:hidden;" name="line_self_expense"  >'+line_self_expense+'</textarea>                             '                                                
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>预定须知:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_predetermined_instructions" style="width:100%;height:400%;visibility:hidden;" name="line_predetermined_instructions"  >'+line_predetermined_instructions+'</textarea> '                                                                            
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>保险说明:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_insurance_description" style="width:100%;height:400%;visibility:hidden;" name="line_insurance_description"  >'+line_insurance_description+'</textarea>           '                                                                  
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>取消说明:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_cancel_description" style="width:100%;height:400%;visibility:hidden;" name="line_cancel_description"  >'+line_cancel_description+'</textarea>                 '                                                            
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>安全提醒:</p>                                                                   '       
+						+'					<div class="col-lg mg-l-10">                                                                                                                                                                               '
+						+'						<textarea class="form-control wd-50%" id="line_security_reminding" style="width:100%;height:400%;visibility:hidden;" name="line_security_reminding"  >'+line_security_reminding+'</textarea>                 '                                                            
+						+'					</div><!-- col -->                                                                                                                                                                                         '
+						+'			</div>                                                                                                                                                                                                             '
+						+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+						+'				<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                                                  '
+						+'				<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="update_line(\'bureau/line/update\',\'form\')">确定</div>                                                             '
+						+'			</div>                                                                                                                                                                                                             '
+						+'																																																			                   '
+						+'		</div><!-- br-section-wrapper -->                                                                                                                                                                                      '
+						+'	  </div><!-- br-pagebody -->                                                                                                                                                                                               '
+						+'	   </form>                         '	
+					fromEject(_html,dec,'80%','80%');
+						
+					createEditor_init();
+					console.log(hwTravelLine.line_price);
+					var moneyData  = null;
+					if (hwTravelLine.line_price==null||hwTravelLine.line_price==""){
+						moneyData  = null;
+					}else {
+						moneyData = JSON.parse(hwTravelLine.line_price);
+					}
+					
+					Initialization(moneyData,moneyData);
+					
+					console.log(line_price);
+					
+					line_price = moneyData;
+					console.log(line_price);
+					for(var i in moneyData){
+						lookupDate(i , moneyData)
+					}
+     	      		
+     	      	}
+    		})
+    	}
+    	//修改————提交
+    	function update_line(url,form){
+    		image_handle(form);
+    		service_handle(form);
+    		form_conmit();
+    		scenics_info();
+    		console.log("----------------------");
+    		console.log(line_price);
+    		console.log($("#line_price").val());
+    		//$("maxMoney").val(max_price)
+    		//$("smallMoney").val(min_price)
+    		
+			if (validation(["line_id","line_name","day_num","line_images"],[],[])){
+    			
+				$.ajax({
+			        url : url,
+			        type : "POST",
+			        data : $("#"+form).serialize(),
+			        success : function (res) {
+			        	res = strToJson(res);
+			           
+			            	layer.alert(res.msg,{icon: 6},function(){
+			            		layer.closeAll();
+			            		reloadTable($("#dynamic-table"))
+			            		moneyData = null;
+			        			getData = null;
+			        			line_price = {};
+			            	});
+			            
+			        }
+			    })
+    		}else{
+    			return
+    		}
+    	}
+    	
+    	var line_info;
+    	var line_traffic; 
+    	var line_hotel; 
+    	var line_trip; 
+    	var line_restaurant; 
+    	var line_cost_info; 
+    	var line_notcost_info; 
+    	var line_self_expense; 
+    	var line_predetermined_instructions; 
+    	var line_insurance_description; 
+    	var line_cancel_description; 
+    	var line_security_reminding; 
+    	//富文本加载
+    	function createEditor_init(){
+    		
+			//页面初始化完毕后执行此方法
+			$(function() {
+				  //初始化类目选择和图片上传器  
+    	        E3.init({fun:function(node){  
+    	        }});  
+				//创建富文本编辑器
+				line_info = E3.createEditor("#form [id=line_info]");
+				line_traffic = E3.createEditor("#form [id=line_traffic]");
+				line_hotel = E3.createEditor("#form [id=line_hotel]");
+				line_trip = E3.createEditor("#form [id=line_trip]");
+				line_restaurant = E3.createEditor("#form [id=line_restaurant]");
+				line_cost_info = E3.createEditor("#form [id=line_cost_info]");
+				line_notcost_info = E3.createEditor("#form [id=line_notcost_info]");
+				line_self_expense = E3.createEditor("#form [id=line_self_expense]");
+				line_predetermined_instructions = E3.createEditor("#form [id=line_predetermined_instructions]");
+				line_insurance_description = E3.createEditor("#form [id=line_insurance_description]");
+				line_cancel_description = E3.createEditor("#form [id=line_cancel_description]");
+				line_security_reminding = E3.createEditor("#form [id=line_security_reminding]");
+				
+			}); 
+    	}
+    	
+    	//表单提交富文本处理
+    	function form_conmit(){
+    		line_info.sync();
+    		line_traffic.sync();
+    		line_hotel.sync();
+    		line_trip.sync();
+    		line_restaurant.sync();
+    		line_cost_info.sync();
+    		line_notcost_info.sync();
+    		line_self_expense.sync();
+    		line_predetermined_instructions.sync();
+    		line_insurance_description.sync();
+    		line_cancel_description.sync();
+    		line_security_reminding.sync();
+    	}
+    	
+    	
+    	//图片处理
+    	function image_handle(form){
+    		var imgs = $("#bigbox").find("img")
+    		var image = "";
+    		for(var i = 0; i<imgs.length; i++){
+    			var img = imgs[i];
+    			
+    			if (i == 0){
+    				$("input[name = 'line_cover']").val($(img).attr("src"));
+    			}
+    			if (i!=imgs.length-1){
+    				image+=$(img).attr("src")+","
+    			}else{
+    				image+=$(img).attr("src")
+    			}
+    			
+    		}
+    			$("input[name = 'line_images']").val(image);
+    	}
+    	//服务处理
+    	function service_handle(form){
+    		var services = $("#"+form).find("input[name = 'line_service']")
+    		var service = '';
+    		for(var i = 0; i<services.length; i++){
+    			service += $(services[i]).val();
+    			
+    		}
+    		$("input[name = 'line_services']").val(service);
+    	}
+    	
+    	function release(){
+    		
+    	}
+    	
+    	function insert_page(){
+    		layer.open({
+    			  type: 2,
+    			  title: '线路添加',
+    			  shadeClose: true,
+    			  shade: 0.8,
+    			  area: ['80%', '80%'],
+    			  content: 'bureau/line/insert_page' //iframe的url
+    			});
+    	}
+    	
+    	function dellabe(is){
+    		$(is).parent().parent().remove();
+    		/* var parentDiv =  is.parentNode.parentNode;
+    		bigbox.removeChild(parentDiv); */
+    	}
+    	
+    	function addlable(is){
+    		/* var parentDiv =  is.parentNode.parentNode;
+    		bigbox.removeChild(parentDiv);
+    		bigbox.insertBefore(parentDiv , bigbox.children[0]); */
+    		var a = $(is).parent().parent();
+    		$(is).parent().parent().remove();
+    		$("#bigbox").prepend(a)
+    	}
+    	
+    	
+    	function zry_getIndex(a){
+    		console.log('0000000000000000000')
+    		var index = $(a).attr('data-index');
+    		var name =getData[index].name
+    		var nameID = getData[index].name_id
+    		$('.zry-box_ul').css('display' , 'none')
+    		for(var i=0; i<$('.zry-showDataBox>div').length; i++){	//	防止重复
+    			if(nameID == $('.zry-showDataBox>div').eq(i).attr('data-id')){
+    				return
+    			}
+    		}
+    		console.log($('.zry-showDataBox'))
+    		$('.zry-showDataBox').append('<div data-name='+name+' data-id='+nameID+'><div>'+name+'</div><i>X</i></div>')
+    		console.log(name , nameID)
+    		//showNameOrId(name , nameID)
+    	}
+    	
+    	//线路预览
+    	function line_preview(id,url,dec){
+    		layer.open({
+  			  type: 2,
+  			  title: dec,
+  			  shadeClose: true,
+  			  shade: 0.8,
+  			  area: ['80%', '80%'],
+  			  content: 'html/line/lineDetails.html?id='+id //iframe的url
+  			});
+    	}
+    </script>
+   
+  </body>
